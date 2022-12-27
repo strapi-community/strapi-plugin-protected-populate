@@ -1,0 +1,27 @@
+{
+  "name": "protected-populate",
+  "version": "1.0.0",
+  "description": "Protects your populates from the url against bad actors.",
+  "strapi": {
+    "name": "protected-populate",
+    "description": "Protects your populates from the url against bad actors if configured correctly.",
+    "kind": "plugin",
+    "displayName": "Protected Populate"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^1.4.1"
+  },
+  "author": {
+    "name": "Boegie19"
+  },
+  "maintainers": [
+    {
+      "name": "Boegie19"
+    }
+  ],
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
