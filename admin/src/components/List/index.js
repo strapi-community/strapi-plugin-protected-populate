@@ -49,9 +49,6 @@ function List({
       "type": "datetime"
     }
   }
-  items.schema.attributes.id = {
-    "type": "integer"
-  }
   return (
     <BoxWrapper>
       <Box

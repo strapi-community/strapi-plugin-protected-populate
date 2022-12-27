@@ -30,7 +30,6 @@ function SelectRender({
     } else {
         value = (typeof selectedRows.fields !== "undefined" && selectedRows.fields.findIndex((field) => field === name) !== -1)
     }
-    console.log(value)
     const setValue = (value) => {
         if (['component', 'relation', 'dynamiczone'].includes(type)) {
             if (value == true) {
@@ -112,6 +111,8 @@ function SelectRender({
                     item={item}
                     selectedRows={selectedRows.populate[name]}
                     updateSelectedRows={updateSelectedRows}
+                    contentTypes={contentTypes}
+                    components={components}
                 />
             )}
         </React.Fragment>

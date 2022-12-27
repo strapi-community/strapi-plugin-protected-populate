@@ -8,7 +8,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from '../List';
 import Tr from '../Tr';
-import SelectRender from '../SelectRender';
+import SelectRender from './SelectRender';
+import BoxWrapper from './BoxWrapper'
+import { Box } from '@strapi/design-system/Box';
 function DynamicZoneList({
   item,
   targetUid,
@@ -16,34 +18,44 @@ function DynamicZoneList({
   components,
   contentTypes,
   selectedRows,
-  updateSelectedRows
+  updateSelectedRows,
 }) {
   let data = []
   data.schema = {}
   data.schema.attributes = {}
-  item.components.map((component, i) => {
-    console.log(component)
-    data.schema.attributes[component] = {
-      "type": "component",
-      "repeatable": false,
-      "component": component,
-      "required": false
-    }
-  })
   return (
     <Tr isChildOfDynamicZone={isFromDynamicZone} className="component-row">
       <td colSpan={12}>
-        <SelectRender
-          isMain={isMain}
-          item={item}
-          targetUid={targetUid}
-          contentTypes={contentTypes}
-          components={components}
-          selectedRows={selectedRows}
-          updateSelectedRows={updateSelectedRows}
-        />
+        <BoxWrapper>
+          <Box
+            paddingLeft={6}
+          >
+            <table>
+              <tbody>
+                {item.components.map((component, i) => {
+                  const data = {
+                    "type": "component",
+                    "repeatable": false,
+                    "component": component,
+                    "required": false,
+                    "name": component
+                  }
+                  return <SelectRender
+                    item={data}
+                    targetUid={component}
+                    contentTypes={contentTypes}
+                    components={components}
+                    isSub
+                    selectedRows={selectedRows}
+                    updateSelectedRows={updateSelectedRows}
+                  />
+                })}
+              </tbody>
+            </table>
+          </Box>
+        </BoxWrapper>
       </td>
-    </Tr>
+    </Tr >
   );
 }
 
