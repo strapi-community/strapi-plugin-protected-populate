@@ -4,36 +4,51 @@ module.exports = [
     path: '/content-types',
     handler: 'data.contentTypes',
     config: {
-      middlewares: [],
-      policies: [],
-      auth: false
-    },
+      policies: [
+        {
+          name: 'admin::hasPermissions',
+          config: { actions: ['plugin::protected-populate.read'] },
+        },
+      ],
+    }
   },
   {
     method: 'GET',
     path: '/routes',
     handler: 'data.routes',
     config: {
-      policies: [],
-      auth: false
-    },
+      policies: [
+        {
+          name: 'admin::hasPermissions',
+          config: { actions: ['plugin::protected-populate.read'] },
+        },
+      ],
+    }
   },
   {
     method: 'GET',
     path: '/data',
     handler: 'data.indexData',
     config: {
-      policies: [],
-      auth: false
-    },
+      policies: [
+        {
+          name: 'admin::hasPermissions',
+          config: { actions: ['plugin::protected-populate.read'] },
+        },
+      ],
+    }
   },
   {
     method: 'PUT',
     path: '/data',
     handler: 'data.updateData',
     config: {
-      policies: [],
-      auth: false
-    },
+      policies: [
+        {
+          name: 'admin::hasPermissions',
+          config: { actions: ['plugin::protected-populate.read'] },
+        },
+      ],
+    }
   },
 ];

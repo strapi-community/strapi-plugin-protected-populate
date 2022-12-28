@@ -3,6 +3,7 @@ import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import Initializer from './components/Initializer';
 import PluginIcon from './components/PluginIcon';
+import pluginPermissions from './permissions';
 
 const name = pluginPkg.strapi.name;
 
@@ -15,18 +16,12 @@ export default {
         id: `${pluginId}.plugin.displayName`,
         defaultMessage: name,
       },
+      permissions: pluginPermissions.main,
       Component: async () => {
         const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
 
         return component;
       },
-      permissions: [
-        // Uncomment to set the permissions of the plugin here
-        // {
-        //   action: '', // the action name should be plugin::plugin-name.actionType
-        //   subject: null,
-        // },
-      ],
     });
     app.registerPlugin({
       id: pluginId,
