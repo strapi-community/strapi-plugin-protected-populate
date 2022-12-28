@@ -19,9 +19,15 @@
       "name": "Boegie19"
     }
   ],
+  "scripts": {
+    "test": "jest /"
+  },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.3.1"
+  }
 }

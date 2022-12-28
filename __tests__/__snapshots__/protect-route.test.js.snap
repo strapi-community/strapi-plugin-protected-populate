@@ -1,0 +1,365 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Protect routes DZ array populate should populate DZ with populate array 1`] = `
+{
+  "on": {
+    "a.a": {
+      "fields": [
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+        "d": {
+          "fields": [
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.b": {
+      "fields": [
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.c": {
+      "fields": [
+        "e",
+        "f",
+      ],
+      "populate": {},
+    },
+  },
+}
+`;
+
+exports[`Protect routes DZ object = true should populate DZ if DZ value is true 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "dz": {
+      "on": {
+        "a.a": {
+          "fields": [
+            "c",
+            "d",
+          ],
+        },
+        "a.b": {
+          "fields": [
+            "c",
+            "d",
+          ],
+        },
+        "a.c": {
+          "fields": [
+            "e",
+            "f",
+          ],
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Protect routes DZ on should populate DZ name only if on is empty 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "dz": {
+      "on": {},
+    },
+  },
+}
+`;
+
+exports[`Protect routes DZ on should populate DZ only selected fields/populates 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "dz": {
+      "on": {
+        "a.a": {
+          "fields": [
+            "c",
+          ],
+          "populate": {
+            "c": {
+              "fields": [
+                "a",
+              ],
+              "populate": {},
+            },
+          },
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Protect routes DZ populate * should populate DZ * 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "abc": {
+      "fields": [
+        "a",
+        "b",
+      ],
+    },
+    "dz": {
+      "on": {
+        "a.a": {
+          "fields": [
+            "c",
+            "d",
+          ],
+        },
+        "a.b": {
+          "fields": [
+            "c",
+            "d",
+          ],
+        },
+        "a.c": {
+          "fields": [
+            "e",
+            "f",
+          ],
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Protect routes DZ populate fields populate DZ fields 1`] = `
+{
+  "on": {
+    "a.a": {
+      "fields": [
+        "c",
+      ],
+    },
+    "a.b": {
+      "fields": [
+        "c",
+      ],
+    },
+    "a.c": {
+      "fields": [
+        "f",
+      ],
+    },
+  },
+}
+`;
+
+exports[`Protect routes DZ populate should populate DZ and split populate between all components 1`] = `
+{
+  "on": {
+    "a.a": {
+      "fields": [
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+        "d": {
+          "fields": [
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.b": {
+      "fields": [
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.c": {
+      "fields": [
+        "e",
+        "f",
+      ],
+      "populate": {},
+    },
+  },
+}
+`;
+
+exports[`Protect routes Normal * populate populate * should only show first level down 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "a": {
+      "fields": [
+        "a",
+        "z",
+      ],
+    },
+  },
+}
+`;
+
+exports[`Protect routes Normal array populate populate should only populate should handle 3 populates 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "a": {
+      "fields": [],
+      "populate": {
+        "b": {
+          "fields": [],
+          "populate": {
+            "c": {
+              "fields": [
+                "a",
+                "b",
+              ],
+              "populate": {},
+            },
+          },
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Protect routes Normal array populate populate should still protect in array 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "a": {
+      "fields": [],
+      "populate": {
+        "b": {
+          "fields": [],
+          "populate": {},
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`Protect routes Normal fields should only populate what is allowed 1`] = `
+{
+  "fields": [
+    "b",
+  ],
+  "populate": {},
+}
+`;
+
+exports[`Protect routes Normal fields should return correctly if nested in populate 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "abc": {
+      "fields": [
+        "b",
+      ],
+      "populate": {},
+    },
+  },
+}
+`;
+
+exports[`Protect routes Normal fields should return full info when unexpected fields input 1`] = `
+{
+  "fields": [
+    "b",
+  ],
+  "populate": {},
+}
+`;
+
+exports[`Protect routes Normal fields should return no fields noting 1`] = `
+{
+  "fields": [],
+  "populate": {},
+}
+`;
+
+exports[`Protect routes Normal fields should return only the fields in info when fields does not exist 1`] = `
+{
+  "fields": [
+    "b",
+  ],
+  "populate": {},
+}
+`;
+
+exports[`Protect routes Normal object = true populate populate a: true should populate 1 level of a only 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "a": true,
+  },
+}
+`;
+
+exports[`Protect routes Normal populate populate should not populate anyting if info has no populate 1`] = `
+{
+  "fields": [],
+  "populate": {},
+}
+`;
+
+exports[`Protect routes Normal populate populate should not populate anyting if quary has no populate 1`] = `
+{
+  "fields": [],
+}
+`;
+
+exports[`Protect routes Normal populate populate should only populate if in info 1`] = `
+{
+  "fields": [],
+  "populate": {
+    "b": {
+      "fields": [],
+      "populate": {},
+    },
+  },
+}
+`;
