@@ -12,7 +12,6 @@ module.exports = ({ strapi }) => ({
     return contentTypes.filter(contentType => contentType.startsWith("api::") || contentType.startsWith("plugin::"));
   },
   indexData(){
-    console.log(strapi.plugin('protected-populate').protectedRoutes)
     return strapi.plugin('protected-populate').protectedRoutes
   },
   updateData(body){

@@ -12,12 +12,11 @@ module.exports = ({ strapi }) => {
     const insertMiddleware = (value,path,method,data) => {
         value.forEach((route) => {
             if(route.path == path && method == route.method){
-                console.log(route.path)
                 if (typeof route.config === "undefined") {
                     route.config = {}
                 }
+                route.config["protected-populate"] = data
                 if (typeof route.config.middlewares === "undefined") {
-                    route.config["protected-populate"] = data
                     route.config.middlewares = ['plugin::protected-populate.protect']
                 } else {
                     route.config.middlewares.push('plugin::protected-populate.protect')
