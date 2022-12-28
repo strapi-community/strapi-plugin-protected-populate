@@ -37,6 +37,9 @@ function SelectRender({
                     selectedRows.populate = {}
                 }
                 selectedRows.populate[name] = {}
+                if(type === "dynamiczone"){
+                    selectedRows.populate[name]["on"] = {}
+                }
                 updateSelectedRows()
             } else if (typeof selectedRows.populate !== "undefined" && typeof selectedRows.populate[name] !== "undefined") {
                 delete selectedRows.populate[name]

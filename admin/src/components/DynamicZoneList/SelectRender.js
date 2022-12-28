@@ -25,16 +25,13 @@ function SelectRender({
 
     const setValue = (value) => {
         if (value == true) {
-            if (typeof selectedRows.populate == "undefined") {
+            if (typeof selectedRows.on == "undefined") {
                 selectedRows.on = {}
             }
             selectedRows.on[name] = {}
             updateSelectedRows()
         } else if (typeof selectedRows.on !== "undefined" && typeof selectedRows.on[name] !== "undefined") {
             delete selectedRows.on[name]
-            if (selectedRows.on.length === 0) {
-                delete selectedRows.on
-            }
             updateSelectedRows()
         }
     }
