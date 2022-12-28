@@ -5,7 +5,8 @@ const fs = require('fs')
 module.exports = ({ strapi }) => ({
   getRoutes() {
     const routes = strapi.server.router.stack
-    return routes.filter(route => route.path.startsWith("/api/"));
+    return routes.filter(route => route.path.startsWith("/api/") && route.methods.at(-1) === "GET"
+    );
   },
   getContentTypes() {
     const contentTypes = strapi.container.get('content-types').keys();
