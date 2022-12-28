@@ -160,7 +160,7 @@ const HomePage = () => {
             </TextButton>
           </Flex>}>
               {Object.keys(selectedCheckboxesClone).map(function (key, i) {
-                return <RouteAccordion updateSelectedCheckboxes={updateSelectedCheckboxes} selectedCheckboxes={selectedCheckboxesClone[key]} handleToggle={handleToggle} expandedID={expandedID} routeName={key} components={components} contentTypes={contentTypes} contentTypeNames={contentTypeNames} key={i} />
+                return <RouteAccordion updateSelectedCheckboxes={updateSelectedCheckboxes} selectedCheckboxes={selectedCheckboxesClone} handleToggle={handleToggle} expandedID={expandedID} routeName={key} components={components} contentTypes={contentTypes} contentTypeNames={contentTypeNames} key={i} />
               })}
             </AccordionGroup>
           </Box>

@@ -14,25 +14,28 @@ import List from '../List';
 const RouteAccordion = ({ routeName, handleToggle, expandedID, contentTypes, components, contentTypeNames,updateSelectedCheckboxes,selectedCheckboxes}) => {
   const name = routeName
   let typeInfo
-  if (selectedCheckboxes["content-type"].includes("::")) {
-    const index = contentTypes.findIndex((data) => data.uid ==  selectedCheckboxes["content-type"])
+  if (selectedCheckboxes[routeName]["content-type"].includes("::")) {
+    const index = contentTypes.findIndex((data) => data.uid ==  selectedCheckboxes[routeName]["content-type"])
     typeInfo = contentTypes[index]
   } else {
-    const index = components.findIndex((data) => data.uid ==  selectedCheckboxes["content-type"])
+    const index = components.findIndex((data) => data.uid ==  selectedCheckboxes[routeName]["content-type"])
     typeInfo = components[index]
   }
   return (
     <Accordion expanded={expandedID === name} onToggle={handleToggle(name)} size="S">
       <AccordionToggle action={<Stack horizontal spacing={0}>
-        <IconButton onClick={() => { }} label="Delete" icon={<Trash />} />
+        <IconButton onClick={() => { 
+          delete selectedCheckboxes[routeName]
+          updateSelectedCheckboxes()
+         }} label="Delete" icon={<Trash />} />
       </Stack>} title={name} togglePosition="left" />
       <AccordionContent>
         <Box padding={3} style={{ maxHeight: "100%" }}>
           <Select 
           label="select content type used" 
-          value={selectedCheckboxes["content-type"]} 
+          value={selectedCheckboxes[routeName]["content-type"]} 
           onChange={(value) => {
-            selectedCheckboxes["content-type"] = value
+            selectedCheckboxes[routeName]["content-type"] = value
             updateSelectedCheckboxes()
           }}>
             {contentTypeNames.map(function (object, i) {
@@ -40,14 +43,14 @@ const RouteAccordion = ({ routeName, handleToggle, expandedID, contentTypes, com
             })}
           </Select>
         </Box>
-        { selectedCheckboxes["content-type"] !== "" && <Box background="neutral0" shadow="filterShadow" hasRadius>
+        { selectedCheckboxes[routeName]["content-type"] !== "" && <Box background="neutral0" shadow="filterShadow" hasRadius>
           <List
             items={typeInfo}
             targetUid={typeInfo.uid}
             contentTypes={contentTypes}
             components={components}
             isMain
-            selectedRows={selectedCheckboxes}
+            selectedRows={selectedCheckboxes[routeName]}
             updateSelectedRows={updateSelectedCheckboxes}
           />
         </Box>}
