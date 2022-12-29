@@ -26,13 +26,13 @@ function SelectRender({
 }) {
     let value
     const { type, name } = item;
-    if (['component', 'relation', 'dynamiczone'].includes(type)) {
+    if (['component', 'relation', 'dynamiczone',"media"].includes(type)) {
         value = (typeof selectedRows.populate !== "undefined" && typeof selectedRows.populate[name] !== "undefined")
     } else {
         value = (typeof selectedRows.fields !== "undefined" && selectedRows.fields.findIndex((field) => field === name) !== -1)
     }
     const setValue = (value) => {
-        if (['component', 'relation', 'dynamiczone'].includes(type)) {
+        if (['component', 'relation', 'dynamiczone',"media"].includes(type)) {
             if (value == true) {
                 if (typeof selectedRows.populate == "undefined") {
                     selectedRows.populate = {}
@@ -107,6 +107,17 @@ function SelectRender({
                 <ComponentList
                     {...item}
                     targetUid={item.target}
+                    contentTypes={contentTypes}
+                    components={components}
+                    selectedRows={selectedRows.populate[name]}
+                    updateSelectedRows={updateSelectedRows}
+                    autoReload={autoReload}
+                />
+            )}
+            {type === 'media' && (
+                <ComponentList
+                    {...item}
+                    targetUid={"plugin::upload.file"}
                     contentTypes={contentTypes}
                     components={components}
                     selectedRows={selectedRows.populate[name]}
