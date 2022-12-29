@@ -24,7 +24,6 @@ function SelectRender({
     updateSelectedRows,
     autoReload
 }) {
-    console.log(autoReload)
     let value
     const { type, name } = item;
     if (['component', 'relation', 'dynamiczone'].includes(type)) {
