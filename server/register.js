@@ -30,8 +30,14 @@ module.exports = ({ strapi }) => {
         let routes = routesList
         while (routes.length !== 0) {
             if (typeof routes[0] === "object" && Array.isArray(routes[0]) || routes[0].routes === "object" && Array.isArray(routes[0].routes)) {
-                if(insertMiddleware(routes[0],path,method,data)){
-                    return true
+                if(typeof routes[0] === "object" && Array.isArray(routes[0])){
+                    if(insertMiddleware(routes[0],path,method,data)){
+                        return true
+                    }
+                }else if(routes[0].routes === "object" && Array.isArray(routes[0].routes)){
+                    if(insertMiddleware(routes[0],path,method,data)){
+                        return true
+                    }
                 }
                 routes.splice(0, 1)
             } else {
@@ -50,10 +56,11 @@ module.exports = ({ strapi }) => {
     for (const [path, data] of Object.entries(strapi.plugin('protected-populate').protectedRoutes)) {
         const pathPluginSplit = path.split("/");
         const method = pathPluginSplit[0].trim()
-        if (pathPluginSplit[1] === "api" && typeof strapi.plugins[pathPluginSplit[1]] !== "undefined") {
+        const pluginName = pathPluginSplit[2]
+        if (pathPluginSplit[1] === "api" && typeof strapi.plugins[pluginName] !== "undefined") {
             pathPluginSplit.splice(0, 3)
             const pluginPath = "/" + pathPluginSplit.join("/")
-            if (insertMiddlewareByPath([strapi.plugins[pathPluginSplit[2]].routes], pluginPath,method,data)) {
+            if (insertMiddlewareByPath([strapi.plugins[pluginName].routes], pluginPath,method,data)) {
                 continue
             }
         }
