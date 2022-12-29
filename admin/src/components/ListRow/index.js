@@ -27,6 +27,7 @@ function ListRow({
   value,
   setValue,
   displayName,
+  autoReload
 }) {
   const isMorph = type === 'relation' && relation.includes('morph');
   const ico = ['integer', 'biginteger', 'float', 'decimal'].includes(type) ? 'number' : type;
@@ -67,7 +68,7 @@ function ListRow({
       </td>
       <td>
         <Flex justifyContent="flex-end" {...stopPropagation}>
-          <BaseCheckbox aria-label="Select" onValueChange={val => setValue(val)} value={value}/>
+          <BaseCheckbox disabled={!autoReload} aria-label="Select" onValueChange={val => setValue(val)} value={value}/>
         </Flex>
 
       </td>

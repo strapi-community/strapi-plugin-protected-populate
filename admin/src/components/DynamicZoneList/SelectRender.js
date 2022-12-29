@@ -18,7 +18,8 @@ function SelectRender({
     contentTypes,
     components,
     selectedRows,
-    updateSelectedRows
+    updateSelectedRows,
+    autoReload
 }) {
     const { type, name } = item;
     let value = (typeof selectedRows.on !== "undefined" && typeof selectedRows.on[name] !== "undefined")
@@ -43,6 +44,7 @@ function SelectRender({
                     isMain={isMain}
                     value={value}
                     setValue={setValue}
+                    autoReload={autoReload}
                 />
             </React.Fragment>
         );
@@ -54,6 +56,7 @@ function SelectRender({
                 isMain={isMain}
                 value={value}
                 setValue={setValue}
+                autoReload={autoReload}
             />
 
             {type === 'component' && (
@@ -64,6 +67,7 @@ function SelectRender({
                     components={components}
                     selectedRows={selectedRows["on"][name]}
                     updateSelectedRows={updateSelectedRows}
+                    autoReload={autoReload}
                 />
             )}
         </React.Fragment>

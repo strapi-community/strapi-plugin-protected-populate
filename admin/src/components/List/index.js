@@ -23,6 +23,7 @@ function List({
   components,
   selectedRows,
   updateSelectedRows,
+  autoReload,
 }) {
   if (targetUid.includes("::")) {
     items.schema.attributes.createdAt = {
@@ -86,6 +87,7 @@ function List({
                   components={components}
                   selectedRows={selectedRows}
                   updateSelectedRows={updateSelectedRows}
+                  autoReload={autoReload}
                 />
               );
             })}

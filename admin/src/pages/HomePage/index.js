@@ -8,13 +8,19 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 import pluginId from '../../pluginId';
-
-import { Box, Loader, Alert, AccordionGroup, HeaderLayout, ModalLayout, ModalBody, ModalHeader, ModalFooter, Button, ContentLayout, Stack, Typography, Select, Option,Flex,TextButton   } from '@strapi/design-system';
+import {
+  useAppInfos,
+  useAutoReloadOverlayBlocker,
+} from '@strapi/helper-plugin';
+import { Box, Loader, Alert, AccordionGroup, HeaderLayout, ModalLayout, ModalBody, ModalHeader, ModalFooter, Button, ContentLayout, Stack, Typography, Select, Option, Flex, TextButton } from '@strapi/design-system';
 import { Plus, Check } from '@strapi/icons';
 import axios from '../../utils/axiosInstance';
 import RouteAccordion from '../../components/routeAccordion';
+import serverRestartWatcher from '../../utils/serverRestartWatcher';
 const HomePage = () => {
 
+  const { lockAppWithAutoreload, unlockAppWithAutoreload } = useAutoReloadOverlayBlocker();
+  const { autoReload } = useAppInfos();
   const [routes, setRoutes] = useState([])
   const [contentTypeNames, setContentTypeNames] = useState([])
   const [loading, setLoading] = useState(false)
@@ -94,12 +100,18 @@ const HomePage = () => {
     setModelRoute("")
     setIsVisible(false)
   }
-  const submitData = () => {
-    axios.put("/protected-populate/data", selectedCheckboxes).then(() => {
+  const submitData =async () => {
+    lockAppWithAutoreload();
+    await axios.put("/protected-populate/data", selectedCheckboxes).then(() => {
       setOldData(selectedCheckboxes)
     }).catch(error => {
       setError(error)
     })
+    // Make sure the server has restarted
+    await serverRestartWatcher(true);
+
+    // Unlock the app
+    await unlockAppWithAutoreload();
   };
   return <div>
     <Box background="neutral100">
@@ -127,7 +139,7 @@ const HomePage = () => {
             }}>
             {routes.map(function (route, i) {
               const name = route.methods.at(-1) + " " + route.path
-              if (typeof selectedCheckboxesClone[name] ==="undefined"){
+              if (typeof selectedCheckboxesClone[name] === "undefined") {
                 return <Option value={name} key={i} >{name}</Option>;
               }
             })}
@@ -159,11 +171,11 @@ const HomePage = () => {
               Add a new protected route
             </TextButton>
           </Flex>}>
-              {Object.keys(selectedCheckboxesClone).map(function (key, i) {
-                return <RouteAccordion updateSelectedCheckboxes={updateSelectedCheckboxes} selectedCheckboxes={selectedCheckboxesClone} handleToggle={handleToggle} expandedID={expandedID} routeName={key} components={components} contentTypes={contentTypes} contentTypeNames={contentTypeNames} key={i} />
-              })}
-            </AccordionGroup>
-          </Box>
+          {Object.keys(selectedCheckboxesClone).map(function (key, i) {
+            return <RouteAccordion autoReload={autoReload} updateSelectedCheckboxes={updateSelectedCheckboxes} selectedCheckboxes={selectedCheckboxesClone} handleToggle={handleToggle} expandedID={expandedID} routeName={key} components={components} contentTypes={contentTypes} contentTypeNames={contentTypeNames} key={i} />
+          })}
+        </AccordionGroup>
+      </Box>
     </ContentLayout>
   </div>;
 };

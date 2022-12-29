@@ -15,7 +15,8 @@ function ComponentList({
   components,
   contentTypes,
   selectedRows,
-  updateSelectedRows
+  updateSelectedRows,
+  autoReload
 }) {
   let typeInfo 
   if (targetUid.includes("::")) {
@@ -36,6 +37,7 @@ function ComponentList({
           isSub
           selectedRows={selectedRows}
           updateSelectedRows={updateSelectedRows}
+          autoReload={autoReload}
         />
       </td>
     </Tr>

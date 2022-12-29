@@ -19,6 +19,7 @@ function DynamicZoneList({
   contentTypes,
   selectedRows,
   updateSelectedRows,
+  autoReload,
 }) {
   let data = []
   data.schema = {}
@@ -48,6 +49,7 @@ function DynamicZoneList({
                     isSub
                     selectedRows={selectedRows}
                     updateSelectedRows={updateSelectedRows}
+                    autoReload={autoReload}
                   />
                 })}
               </tbody>

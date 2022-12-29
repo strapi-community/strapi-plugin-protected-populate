@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import { Select, Option, Box, Accordion, AccordionToggle, AccordionContent, Stack, IconButton } from '@strapi/design-system';
 import { Trash } from '@strapi/icons';
 import List from '../List';
-const RouteAccordion = ({ routeName, handleToggle, expandedID, contentTypes, components, contentTypeNames,updateSelectedCheckboxes,selectedCheckboxes}) => {
+const RouteAccordion = ({autoReload, routeName, handleToggle, expandedID, contentTypes, components, contentTypeNames,updateSelectedCheckboxes,selectedCheckboxes}) => {
   const name = routeName
   let typeInfo
   if (selectedCheckboxes[routeName]["content-type"].includes("::")) {
@@ -52,6 +52,7 @@ const RouteAccordion = ({ routeName, handleToggle, expandedID, contentTypes, com
             isMain
             selectedRows={selectedCheckboxes[routeName]}
             updateSelectedRows={updateSelectedCheckboxes}
+            autoReload={autoReload}
           />
         </Box>}
       </AccordionContent>

@@ -21,8 +21,10 @@ function SelectRender({
     contentTypes,
     components,
     selectedRows,
-    updateSelectedRows
+    updateSelectedRows,
+    autoReload
 }) {
+    console.log(autoReload)
     let value
     const { type, name } = item;
     if (['component', 'relation', 'dynamiczone'].includes(type)) {
@@ -75,6 +77,7 @@ function SelectRender({
                     isMain={isMain}
                     value={value}
                     setValue={setValue}
+                    autoReload={autoReload}
                 />
             </React.Fragment>
         );
@@ -86,6 +89,7 @@ function SelectRender({
                 isMain={isMain}
                 value={value}
                 setValue={setValue}
+                autoReload={autoReload}
             />
 
             {type === 'component' && (
@@ -96,6 +100,8 @@ function SelectRender({
                     components={components}
                     selectedRows={selectedRows.populate[name]}
                     updateSelectedRows={updateSelectedRows}
+                    autoReload={autoReload}
+
                 />
             )}
             {type === 'relation' && (
@@ -106,6 +112,7 @@ function SelectRender({
                     components={components}
                     selectedRows={selectedRows.populate[name]}
                     updateSelectedRows={updateSelectedRows}
+                    autoReload={autoReload}
                 />
             )}
 
@@ -116,6 +123,7 @@ function SelectRender({
                     updateSelectedRows={updateSelectedRows}
                     contentTypes={contentTypes}
                     components={components}
+                    autoReload={autoReload}
                 />
             )}
         </React.Fragment>
