@@ -68,6 +68,10 @@ function SelectRender({
             }
         }
     }
+    if(type === "relation" && typeof item.target !== "string" ){
+        return (<></>)
+    }
+    
     if (value === false) {
         return (
             <React.Fragment key={name}>
