@@ -25,6 +25,9 @@ const RouteAccordion = ({autoReload, routeName, handleToggle, expandedID, conten
     <Accordion expanded={expandedID === name} onToggle={handleToggle(name)} size="S">
       <AccordionToggle action={<Stack horizontal spacing={0}>
         <IconButton onClick={() => { 
+          if(!autoReload){
+            return
+          }
           delete selectedCheckboxes[routeName]
           updateSelectedCheckboxes()
          }} label="Delete" icon={<Trash />} />
@@ -35,6 +38,9 @@ const RouteAccordion = ({autoReload, routeName, handleToggle, expandedID, conten
           label="select content type used" 
           value={selectedCheckboxes[routeName]["content-type"]} 
           onChange={(value) => {
+            if(!autoReload){
+              return
+            }
             selectedCheckboxes[routeName]["content-type"] = value
             updateSelectedCheckboxes()
           }}>
