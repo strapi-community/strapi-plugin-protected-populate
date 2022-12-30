@@ -65,7 +65,7 @@ module.exports = ({ strapi }) => {
     }
 
     for (const pluginName of Object.keys(strapi.plugins)) {
-        insertMiddlewareByPath([strapi.plugins[pluginName].routes], "","",pluginName,savePluginRoutesWitOutPrefix)
+        insertMiddlewareByPath([strapi.plugins[pluginName].routes], "","",pluginName,savePluginRoutesWithoutPrefix)
     }
 
     for (const [path, data] of Object.entries(strapi.plugin('protected-populate').protectedRoutes)) {
