@@ -11,6 +11,9 @@
   "dependencies": {
     "@strapi/design-system": "^1.4.1"
   },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.4.0"
+  },
   "author": {
     "name": "Boegie19"
   },
