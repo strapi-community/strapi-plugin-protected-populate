@@ -11,7 +11,7 @@ module.exports = ({ strapi }) => {
 
     const savedPluginRoutes = {}
 
-    const savePluginRoutesWithoutPrefix = (value,_,_,data) => {
+    const savePluginRoutesWithoutPrefix = (value,path,method,data) => {
         value.forEach((route) => {
             if (typeof route.config !== "undefined" && route.config.prefix === "") {
                 savedPluginRoutes[route.method + " " + route.path] = data
