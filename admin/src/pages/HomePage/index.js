@@ -167,7 +167,10 @@ const HomePage = () => {
       <Box padding={8} background="neutral0">
         <AccordionGroup label="Routes"
           footer={<Flex justifyContent="center" height="48px" background="neutral150">
-            <TextButton onClick={() => handleSetIsVisible(true)} startIcon={<Plus />}>
+            <TextButton onClick={() => {
+              handleSetIsVisible(true)
+            
+            }} disabled={!autoReload} startIcon={<Plus />}>
               Add a new protected route
             </TextButton>
           </Flex>}>
