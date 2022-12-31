@@ -79,6 +79,9 @@ const RouteAccordion = ({
             }}
           >
             {contentTypeNames.map(function (object, i) {
+              if (!autoReload && selectedCheckboxes[routeName]['content-type'] !==object) {
+                return
+              }
               return (
                 <Option value={object} key={i}>
                   {object}
