@@ -16,15 +16,15 @@ function ComponentList({
   contentTypes,
   selectedRows,
   updateSelectedRows,
-  autoReload
+  autoReload,
 }) {
-  let typeInfo 
-  if (targetUid.includes("::")) {
-    const index = contentTypes.findIndex((data) => data.uid == targetUid)
-    typeInfo = contentTypes[index]
+  let typeInfo;
+  if (targetUid.includes('::')) {
+    const index = contentTypes.findIndex((data) => data.uid == targetUid);
+    typeInfo = contentTypes[index];
   } else {
-    const index = components.findIndex((data) => data.uid == targetUid)
-    typeInfo = components[index]
+    const index = components.findIndex((data) => data.uid == targetUid);
+    typeInfo = components[index];
   }
   return (
     <Tr isChildOfDynamicZone={isFromDynamicZone} className="component-row">

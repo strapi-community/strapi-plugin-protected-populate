@@ -10,7 +10,7 @@ module.exports = [
           config: { actions: ['plugin::protected-populate.read'] },
         },
       ],
-    }
+    },
   },
   {
     method: 'GET',
@@ -23,7 +23,7 @@ module.exports = [
           config: { actions: ['plugin::protected-populate.read'] },
         },
       ],
-    }
+    },
   },
   {
     method: 'GET',
@@ -36,7 +36,7 @@ module.exports = [
           config: { actions: ['plugin::protected-populate.read'] },
         },
       ],
-    }
+    },
   },
   {
     method: 'PUT',
@@ -49,6 +49,6 @@ module.exports = [
           config: { actions: ['plugin::protected-populate.read'] },
         },
       ],
-    }
+    },
   },
 ];

@@ -25,7 +25,7 @@ const Tr = styled.tr`
         left: 1.625rem;
         border-radius: 4px;
 
-        ${({theme }) => {
+        ${({ theme }) => {
           return `background: ${theme.colors.neutral150};`;
         }}
       }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Typography } from '@strapi/design-system/Typography';
 
 const DisplayedType = ({ type, customField, repeatable }) => {
-
   let readableType = type;
 
   if (['integer', 'biginteger', 'float', 'decimal'].includes(type)) {
@@ -13,20 +12,14 @@ const DisplayedType = ({ type, customField, repeatable }) => {
   }
 
   if (customField) {
-    return (
-      <Typography>
-          Custom field
-      </Typography>
-    );
+    return <Typography>Custom field</Typography>;
   }
 
   return (
     <Typography>
       {type}
       &nbsp;
-      {repeatable &&
-        '(repeatable)'
-      }
+      {repeatable && '(repeatable)'}
     </Typography>
   );
 };

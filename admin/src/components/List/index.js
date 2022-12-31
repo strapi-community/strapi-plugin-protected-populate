@@ -25,30 +25,30 @@ function List({
   updateSelectedRows,
   autoReload,
 }) {
-  if (targetUid.includes("::")) {
+  if (targetUid.includes('::')) {
     items.schema.attributes.createdAt = {
-      "type": "datetime"
-    }
+      type: 'datetime',
+    };
     items.schema.attributes.updatedAt = {
-      "type": "datetime"
-    }
+      type: 'datetime',
+    };
   }
-  if(items.schema.populateCreatorFields){
-    items.schema.attributes.createdBy = {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "admin::user",
-    },
-    items.schema.attributes.updatedBy = {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "admin::user",
-    }
+  if (items.schema.populateCreatorFields) {
+    (items.schema.attributes.createdBy = {
+      type: 'relation',
+      relation: 'oneToMany',
+      target: 'admin::user',
+    }),
+      (items.schema.attributes.updatedBy = {
+        type: 'relation',
+        relation: 'oneToMany',
+        target: 'admin::user',
+      });
   }
-  if(items.schema.draftAndPublish){
+  if (items.schema.draftAndPublish) {
     items.schema.attributes.publishedAt = {
-      "type": "datetime"
-    }
+      type: 'datetime',
+    };
   }
   return (
     <BoxWrapper>
@@ -76,8 +76,8 @@ function List({
           )}
           <tbody>
             {Object.entries(items.schema.attributes).map(([key, item]) => {
-              item.name = key
-              item.plugin
+              item.name = key;
+              item.plugin;
               return (
                 <SelectRender
                   isMain={isMain}

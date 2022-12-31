@@ -27,11 +27,10 @@ function ListRow({
   value,
   setValue,
   displayName,
-  autoReload
+  autoReload,
 }) {
   const isMorph = type === 'relation' && relation.includes('morph');
   const ico = ['integer', 'biginteger', 'float', 'decimal'].includes(type) ? 'number' : type;
-
 
   const src = target ? 'relation' : ico;
 
@@ -54,13 +53,10 @@ function ListRow({
         </Stack>
       </td>
       <td>
-      {target ? (
+        {target ? (
           <Typography>
-            Relation with
-            &nbsp;
-            <span style={{ fontStyle: 'italic' }}>
-              {target}
-            </span>
+            Relation with &nbsp;
+            <span style={{ fontStyle: 'italic' }}>{target}</span>
           </Typography>
         ) : (
           <DisplayedType type={type} customField={customField} repeatable={repeatable} />
@@ -68,9 +64,13 @@ function ListRow({
       </td>
       <td>
         <Flex justifyContent="flex-end" {...stopPropagation}>
-          <BaseCheckbox disabled={!autoReload} aria-label="Select" onValueChange={val => setValue(val)} value={value}/>
+          <BaseCheckbox
+            disabled={!autoReload}
+            aria-label="Select"
+            onValueChange={(val) => setValue(val)}
+            value={value}
+          />
         </Flex>
-
       </td>
     </BoxWrapper>
   );
