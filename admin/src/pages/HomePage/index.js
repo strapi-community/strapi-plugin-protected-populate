@@ -107,7 +107,7 @@ const HomePage = () => {
           .get('/protected-populate/data')
           .then((response) => {
             setOldData(JSON.stringify(response.data));
-            setSelectedCheckboxes(JSON.stringify(response.data));
+            setSelectedCheckboxes(JSON.stringify(response.data.data));
           })
           .catch((error) => {
             setError(error);
