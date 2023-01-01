@@ -1,12 +1,14 @@
 'use strict';
-
+const { configUpdater } = require('./utils/config-updater');
 const fs = require('fs');
 module.exports = ({ strapi }) => {
   if (fs.existsSync(strapi.dirs.app.src + '/protected-populate/index.json')) {
     const fileData = fs.readFileSync(strapi.dirs.app.src + `/protected-populate/index.json`, {
       encoding: 'utf8',
     });
-    strapi.plugin('protected-populate').protectedRoutes = JSON.parse(fileData);
+    let config = JSON.parse(fileData);
+    config = configUpdater(strapi, config);
+    strapi.plugin('protected-populate').protectedRoutes = config;
   } else {
     strapi.plugin('protected-populate').protectedRoutes = {};
   }
