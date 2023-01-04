@@ -89,7 +89,7 @@ module.exports = () => {
 };
 ```
 
-enable auto populate will automatically populate all fields and populates if no ctx.query.populate/ ctx.query.fields is found.
+enable auto populate will automatically populate all fields and populates if no ctx.query.populate / ctx.query.fields is found.
 
 ```js
 module.exports = () => {
