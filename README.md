@@ -23,6 +23,7 @@
 - [⏳ Installation](#-installation)
 - [🔧 Configuration](#-configuration)
 - [Contributing](#contributing)
+- [Migration](#migration)
 - [License](#license)
 
 ## 🚦 Current Status
@@ -109,6 +110,15 @@ module.exports = () => {
 
 Please open issues before making a pull request so that we can talk about what you want to change for the best results.
 
+## Migration
+V1.0.0 to v1.1.0
+choose what way you want to do the migration GUI or File change
+### GUI way
+Go to the gui select all Media types and deselect them
+Update to v1.1.1 select all deselected Media
+
+### File change
+Find all the media in fields and change them to populate
 ## License
 
 MIT
