@@ -31,7 +31,6 @@ This package is currently under development and should be consider **ALPHA** in 
 
 For more information on contributing please see [the contrib message below](#contributing).
 
-
 ## ✨ Features
 
 These are the primary features that are finished or currently being worked on:
@@ -48,17 +47,18 @@ I made this plugin since I got sick and tired of writing complex policies to do 
 
 Supported Strapi Versions:
 
-| Strapi Version | Supported  | Tested On     |
-|----------------|------------|---------------|
-| v3             | ❌         | N/A           |
-| v4.0.x         | ✅         | N/A           |
-| v4.1.x         | ✅         | N/A           |
-| v4.2.x         | ✅         | N/A           |
-| v4.3.x         | ✅         | N/A           |
-| v4.4.x         | ✅         | N/A           |
-| v4.5.x         | ✅         | December 2022 |
+| Strapi Version | Supported | Tested On     |
+| -------------- | --------- | ------------- |
+| v3             | ❌        | N/A           |
+| v4.0.x         | ❌        | N/A           |
+| v4.1.x         | ❌        | N/A           |
+| v4.2.x         | ❌        | N/A           |
+| v4.3.x         | ❌        | N/A           |
+| v4.4.x         | ❌        | N/A           |
+| v4.5.0/v4.5.2  | ❌        | N/A           |
+| v4.5.3+        | ✅        | December 2022 |
 
-**This plugin will not work with Strapi v3 projects as it utilizes APIs that don't exist in the v3!**
+**This plugin will not work on any version older then v4.5.3 since I am using the on syntax for dynamic zones wat was added in that version**
 
 ## ⏳ Installation
 
@@ -78,8 +78,32 @@ WIP
 
 ### Config
 
-WIP
+standard config
 
+```js
+module.exports = () => {
+  return {
+    'protected-populate': {
+      enabled: true,
+    },
+  };
+};
+```
+
+enable auto populate will automatically populate all fields and populates if no ctx.query.populate / ctx.query.fields is found.
+
+```js
+module.exports = () => {
+  return {
+    'protected-populate': {
+      enabled: true,
+      config: {
+        ['auto-populate']: true,
+      },
+    },
+  };
+};
+```
 
 ## Contributing
 
