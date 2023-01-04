@@ -50,14 +50,15 @@ Supported Strapi Versions:
 | Strapi Version | Supported | Tested On     |
 | -------------- | --------- | ------------- |
 | v3             | ❌        | N/A           |
-| v4.0.x         | ✅        | N/A           |
-| v4.1.x         | ✅        | N/A           |
-| v4.2.x         | ✅        | N/A           |
-| v4.3.x         | ✅        | N/A           |
-| v4.4.x         | ✅        | N/A           |
-| v4.5.x         | ✅        | December 2022 |
+| v4.0.x         | ❌        | N/A           |
+| v4.1.x         | ❌        | N/A           |
+| v4.2.x         | ❌        | N/A           |
+| v4.3.x         | ❌        | N/A           |
+| v4.4.x         | ❌        | N/A           |
+| v4.5.0/v4.5.2  | ❌        | N/A           |
+| v4.5.3+        | ✅        | December 2022 |
 
-**This plugin will not work with Strapi v3 projects as it utilizes APIs that don't exist in the v3!**
+**This plugin will not work on any version older then v4.5.3 since I am using the on syntax for dynamic zones wat was added in that version**
 
 ## ⏳ Installation
 

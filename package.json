@@ -12,7 +12,7 @@
     "@strapi/design-system": "^1.4.1"
   },
   "peerDependencies": {
-    "@strapi/strapi": "^4.4.0"
+    "@strapi/strapi": "^4.5.3"
   },
   "author": {
     "name": "Boegie19"
