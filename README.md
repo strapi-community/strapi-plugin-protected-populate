@@ -97,7 +97,9 @@ module.exports = () => {
   return {
     'protected-populate': {
       enabled: true,
-      ['auto-populate']: true,
+      config: {
+        ['auto-populate']: true,
+      },
     },
   };
 };
