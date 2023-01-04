@@ -4,7 +4,6 @@ module.exports = (config, { strapi }) => {
   // Add your own logic here.
   return async (ctx, next) => {
     //Info is parsed to and stingified to ensure none can do someting to the original object
-    console.log(strapi.plugin('protected-populate').config('auto-populate'));
     const info = JSON.parse(JSON.stringify(ctx.state.route.config['protected-populate']));
     if (
       typeof ctx.query.populate === 'undefined' &&
@@ -14,7 +13,6 @@ module.exports = (config, { strapi }) => {
       ctx.query.populate = info.populate;
       ctx.query.fields = info.fields;
     }
-    console.log(ctx.query);
     ctx.query = protectRoute(ctx.query, info);
     await next();
   };
