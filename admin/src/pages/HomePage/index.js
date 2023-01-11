@@ -47,6 +47,7 @@ const HomePage = () => {
   const [contentTypes, setContentTypes] = useState([]);
   const [components, setComponents] = useState([]);
   const [oldData, setOldData] = useState('{}');
+  const [roles, setRoles] = useState([]);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState('{}');
   const [isVisible, setIsVisible] = useState(false);
   let selectedCheckboxesClone = JSON.parse(selectedCheckboxes);
@@ -108,6 +109,16 @@ const HomePage = () => {
           .then((response) => {
             setOldData(JSON.stringify(response.data));
             setSelectedCheckboxes(JSON.stringify(response.data));
+          })
+          .catch((error) => {
+            setError(error);
+          }),
+      ],
+      [
+        axios
+          .get('/users-permissions/roles')
+          .then((response) => {
+            setRoles(response.data.roles);
           })
           .catch((error) => {
             setError(error);
@@ -269,6 +280,7 @@ const HomePage = () => {
                   components={components}
                   contentTypes={contentTypes}
                   contentTypeNames={contentTypeNames}
+                  roles={roles}
                   key={i}
                 />
               );
