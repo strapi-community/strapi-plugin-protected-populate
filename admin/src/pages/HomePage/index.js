@@ -41,6 +41,7 @@ const HomePage = () => {
   const [error, setError] = useState(undefined);
   const [expandedID, setExpandedID] = useState(null);
 
+  const [isVisible, setIsVisible] = useState(false);
   const [modelRoute, setModelRoute] = useState('');
   const [modelContentType, setModelContentType] = useState('');
 
@@ -49,7 +50,6 @@ const HomePage = () => {
   const [oldData, setOldData] = useState('{}');
   const [roles, setRoles] = useState([]);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState('{}');
-  const [isVisible, setIsVisible] = useState(false);
   let selectedCheckboxesClone = JSON.parse(selectedCheckboxes);
   function updateSelectedCheckboxes() {
     const json = JSON.stringify(selectedCheckboxesClone);

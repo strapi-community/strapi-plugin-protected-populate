@@ -5,9 +5,7 @@
  */
 
 import React from 'react';
-import { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
-
+import { useState } from 'react';
 import {
   Select,
   Box,
@@ -21,9 +19,15 @@ import {
   Flex,
   TextButton,
   Typography,
+  ModalLayout,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
 } from '@strapi/design-system';
 import { Trash, Plus } from '@strapi/icons';
 import List from '../List';
+import RoleAccordion from '../roleAccordion';
 import Option from './Option';
 const RouteAccordion = ({
   autoReload,
@@ -37,6 +41,29 @@ const RouteAccordion = ({
   selectedCheckboxes,
   roles,
 }) => {
+  const [expandedIDRole, setExpandedIDRole] = useState(null);
+  const handleToggleRole = (id) => () => {
+    setExpandedIDRole((s) => (s === id ? null : id));
+  };
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [modelRoleCloneFrom, setModelRoleCloneFrom] = useState(null);
+  const [modelRolesCloneTo, setModelRolesCloneTo] = useState([]);
+
+  const handleSetIsVisible = (value, modelRoleCloneFrom) => {
+    setModelRoleCloneFrom(modelRoleCloneFrom);
+    setModelRolesCloneTo([]);
+    setIsVisible(value);
+  };
+  const handleFinish = () => {
+    for (const modelRole of modelRolesCloneTo) {
+      selectedCheckboxes[routeName]['roles'][modelRole] = JSON.parse(
+        JSON.stringify(selectedCheckboxes[routeName]['roles'][modelRoleCloneFrom])
+      );
+    }
+    handleSetIsVisible(false);
+  };
+
   const name = routeName;
   let typeInfo;
   if (selectedCheckboxes[routeName]['content-type'].includes('::')) {
@@ -51,46 +78,28 @@ const RouteAccordion = ({
     typeInfo = components[index];
   }
   const rolesEnabled = typeof selectedCheckboxes[routeName]['roles'] !== 'undefined';
-  const publicRole = roles[roles.findIndex((role) => role.type === 'public')];
-  const [values, setValues] = useState([]);
 
   const changeRolesEnabled = () => {
     if (rolesEnabled) {
-      const publicIndex = selectedCheckboxes[routeName]['roles'].findIndex((data) => {
-        if (typeof publicRole === 'undefined') {
-          return false;
-        }
-        return data.ids.includes(publicRole.id);
-      });
-
       selectedCheckboxes[routeName]['populate'] =
-        selectedCheckboxes[routeName]['roles'][publicIndex]['populate'];
+        selectedCheckboxes[routeName]['roles']['public']['populate'];
       selectedCheckboxes[routeName]['fields'] =
-        selectedCheckboxes[routeName]['roles'][publicIndex]['fields'];
+        selectedCheckboxes[routeName]['roles']['public']['fields'];
       delete selectedCheckboxes[routeName]['roles'];
     } else {
       //enable roles
-      selectedCheckboxes[routeName]['roles'] = [
-        {
-          ids: [publicRole.id],
-          populate: selectedCheckboxes[routeName]['populate'],
-          fields: selectedCheckboxes[routeName]['fields'],
-        },
-      ];
+      selectedCheckboxes[routeName]['roles'] = {};
+      for (const role of roles) {
+        selectedCheckboxes[routeName]['roles'][role.type] = {};
+        selectedCheckboxes[routeName]['roles'][role.type].populate =
+          selectedCheckboxes[routeName]['populate'];
+        selectedCheckboxes[routeName]['roles'][role.type].fields =
+          selectedCheckboxes[routeName]['fields'];
+      }
       delete selectedCheckboxes[routeName]['populate'];
       delete selectedCheckboxes[routeName]['fields'];
     }
     updateSelectedCheckboxes();
-  };
-  const idsToNames = (ids) => {
-    let names = [];
-    ids.forEach((id) => {
-      const index = roles.findIndex((role) => role.id === id);
-      if (index !== -1) {
-        names.push(roles[index].name);
-      }
-    });
-    return names;
   };
 
   return (
@@ -148,131 +157,75 @@ const RouteAccordion = ({
           <br />
           {rolesEnabled ? (
             <>
-              <AccordionGroup
-                label="Routes"
-                footer={
-                  <Flex justifyContent="center" height="48px" background="neutral150">
-                    <TextButton
-                      onClick={() => {
-                        selectedCheckboxes[routeName]['roles'].push({ ids: [] });
-                        updateSelectedCheckboxes();
-                      }}
-                      disabled={!autoReload}
-                      startIcon={<Plus />}
-                    >
-                      Add a new roleGroup
-                    </TextButton>
-                  </Flex>
-                }
-              >
-                {selectedCheckboxes[routeName]['roles'].map((data, index) => {
+              <AccordionGroup label="Roles">
+                {isVisible && (
+                  <ModalLayout
+                    onClose={() => handleSetIsVisible((prev) => !prev)}
+                    labelledBy="title"
+                  >
+                    <ModalHeader>
+                      <Typography fontWeight="bold" textColor="neutral800" as="h2" id="title">
+                        Clone Menu
+                      </Typography>
+                    </ModalHeader>
+                    <ModalBody>
+                      <Select
+                        label="select roles to clone to"
+                        value={modelRolesCloneTo}
+                        onChange={(value) => {
+                          setModelRolesCloneTo(value);
+                        }}
+                        multi
+                        withTags
+                      >
+                        {roles.map(function (role) {
+                          if (role.type !== modelRoleCloneFrom) {
+                            return (
+                              <Option value={role.type} key={role.type}>
+                                {role.name}
+                              </Option>
+                            );
+                          }
+                        })}
+                      </Select>
+                    </ModalBody>
+                    <ModalFooter
+                      startActions={
+                        <Button
+                          onClick={() => handleSetIsVisible((prev) => !prev)}
+                          variant="tertiary"
+                        >
+                          Cancel
+                        </Button>
+                      }
+                      endActions={
+                        <Button
+                          disabled={modelRoleCloneFrom === '' || modelRolesCloneTo.length === 0}
+                          onClick={() => handleFinish()}
+                        >
+                          Finish
+                        </Button>
+                      }
+                    />
+                  </ModalLayout>
+                )}
+                {roles.map((role, i) => {
                   return (
-                    <Accordion
-                      expanded={values.includes(index)}
-                      onToggle={() => {
-                        if (values.includes(index)) {
-                          setValues(values.filter((value) => value !== index));
-                        } else {
-                          setValues([index, ...values]);
-                        }
-                      }}
-                      size="S"
-                    >
-                      <AccordionToggle
-                        action={
-                          <Stack horizontal spacing={0}>
-                            {typeof publicRole !== 'undefined' &&
-                              !data.ids.includes(publicRole.id) && (
-                                <IconButton onClick={() => {}} label="Delete" icon={<Trash />} />
-                              )}
-                          </Stack>
-                        }
-                        title={idsToNames(data.ids).join()}
-                        togglePosition="left"
-                      />
-                      <AccordionContent>
-                        <Stack spacing={11}>
-                          <Select
-                            id="roleSelection"
-                            label="Choose your roles"
-                            placeholder="None"
-                            onClear={() => {
-                              let ids = [];
-                              if (data.ids.includes(publicRole.id)) {
-                                ids.push(publicRole.id);
-                              }
-                              selectedCheckboxes[routeName].roles[index].ids = ids;
-                              updateSelectedCheckboxes();
-                            }}
-                            clearLabel="Clear the roles"
-                            value={selectedCheckboxes[routeName].roles[index].ids}
-                            onChange={(values) => {
-                              if (
-                                (data.ids.includes(publicRole.id) === true &&
-                                  values.includes(publicRole.id) === false) ||
-                                (data.ids.includes(publicRole.id) === false &&
-                                  values.includes(publicRole.id) === true)
-                              ) {
-                                return;
-                              }
-                              let checkedIds = [];
-                              let failed = false;
-                              selectedCheckboxes[routeName]['roles'].map((roleIds, index2) => {
-                                let ids = roleIds.ids;
-                                if (index2 === index) {
-                                  ids = values;
-                                }
-                                ids.forEach((id) => {
-                                  if (checkedIds.indexOf(id) === -1) {
-                                    checkedIds.push(id);
-                                  } else {
-                                    failed = true;
-                                  }
-                                });
-                              });
-                              if (failed === true) {
-                                return;
-                              }
-                              selectedCheckboxes[routeName].roles[index].ids = values;
-                              updateSelectedCheckboxes();
-                            }}
-                            disabled={!autoReload}
-                            selectButtonTitle="Down Button"
-                            multi
-                            withTags
-                          >
-                            {roles.map((role) => {
-                              const roleIndex = selectedCheckboxes[routeName]['roles'].findIndex(
-                                (data) => data.ids.includes(role.id)
-                              );
-                              return (
-                                <Option
-                                  disabled={
-                                    (roleIndex !== -1 && index !== roleIndex) ||
-                                    role.id === publicRole.id
-                                  }
-                                  value={role.id}
-                                >
-                                  {role.name}
-                                </Option>
-                              );
-                            })}
-                          </Select>
-                        </Stack>
-                        <Box background="neutral0" shadow="filterShadow" hasRadius>
-                          <List
-                            items={typeInfo}
-                            targetUid={typeInfo.uid}
-                            contentTypes={contentTypes}
-                            components={components}
-                            isMain
-                            selectedRows={selectedCheckboxes[routeName]['roles'][index]}
-                            updateSelectedRows={updateSelectedCheckboxes}
-                            autoReload={autoReload}
-                          />
-                        </Box>
-                      </AccordionContent>
-                    </Accordion>
+                    <RoleAccordion
+                      role={role}
+                      items={typeInfo}
+                      targetUid={typeInfo.uid}
+                      contentTypes={contentTypes}
+                      components={components}
+                      selectedRows={selectedCheckboxes[routeName]['roles']}
+                      updateSelectedRows={updateSelectedCheckboxes}
+                      autoReload={autoReload}
+                      key={i}
+                      handleToggle={handleToggleRole}
+                      expandedID={expandedIDRole}
+                      handleSetIsVisible={handleSetIsVisible}
+                      isMain
+                    />
                   );
                 })}
               </AccordionGroup>
@@ -284,10 +237,10 @@ const RouteAccordion = ({
                 targetUid={typeInfo.uid}
                 contentTypes={contentTypes}
                 components={components}
-                isMain
                 selectedRows={selectedCheckboxes[routeName]}
                 updateSelectedRows={updateSelectedCheckboxes}
                 autoReload={autoReload}
+                isMain
               />
             </Box>
           )}

@@ -16,7 +16,6 @@ import BoxWrapper from './BoxWrapper';
 
 function List({
   isMain,
-  isSub,
   items,
   targetUid,
   contentTypes,
