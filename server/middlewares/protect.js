@@ -5,7 +5,6 @@ module.exports = (config, { strapi }) => {
   return async (ctx, next) => {
     //Info is parsed to and stingified to ensure none can do someting to the original object
     let info = JSON.parse(JSON.stringify(ctx.state.route.config['protected-populate']));
-    console.log(ctx.state.user);
     if (info.roles !== undefined) {
       if (ctx.state.user === undefined) {
         info = info.roles['public'];
