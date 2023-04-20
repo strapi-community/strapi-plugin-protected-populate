@@ -37,7 +37,7 @@ For more information on contributing please see [the contrib message below](#con
 These are the primary features that are finished or currently being worked on:
 
 - [x] Protected your Get request populates and fields
-- [ ] Allow you to protect routes per role (In the near future)
+- [x] Allow you to protect routes per role (In the near future)
 
 ## 🤔 Motivation
 
@@ -51,13 +51,10 @@ Supported Strapi Versions:
 | Strapi Version | Supported | Tested On     |
 | -------------- | --------- | ------------- |
 | v3             | ❌        | N/A           |
-| v4.0.x         | ❌        | N/A           |
-| v4.1.x         | ❌        | N/A           |
-| v4.2.x         | ❌        | N/A           |
-| v4.3.x         | ❌        | N/A           |
-| v4.4.x         | ❌        | N/A           |
-| v4.5.0/v4.5.2  | ❌        | N/A           |
-| v4.5.3+        | ✅        | December 2022 |
+| <=v4.5.2       | ❌        | N/A           |
+| v4.5.3/4.6.2   | ✅        | December 2022 |
+| v4.7.0/4.7.1   | ❌        | N/A           |
+| v4.8.0+        | ✅        | April 2023    |
 
 **This plugin will not work on any version older then v4.5.3 since I am using the on syntax for dynamic zones wat was added in that version**
 
@@ -111,14 +108,19 @@ module.exports = () => {
 Please open issues before making a pull request so that we can talk about what you want to change for the best results.
 
 ## Migration
+
 V1.0.0 to v1.1.0
 choose what way you want to do the migration GUI or File change
+
 ### GUI way
+
 Go to the gui select all Media types and deselect them
 Update to v1.1.1 select all deselected Media
 
 ### File change
+
 Find all the media in fields and change them to populate
+
 ## License
 
 MIT
