@@ -31,6 +31,9 @@ function List({
     items.schema.attributes.updatedAt = {
       type: 'datetime',
     };
+    items.schema.attributes.id = {
+      type: 'id',
+    };
   }
   if (items.schema.populateCreatorFields) {
     (items.schema.attributes.createdBy = {
