@@ -1,6 +1,6 @@
 const { protectRoute } = require('../server/middlewares/helpers/protect-route');
 
-describe('Protect routes', () => {
+describe('Protect populate', () => {
   describe('Normal fields', () => {
     it('should only populate what is allowed', () => {
       let query = { fields: ['a', 'b'] };
@@ -463,6 +463,51 @@ describe('Protect routes', () => {
           },
         },
       };
+      expect(protectRoute(query, info)).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Protect filters', () => {
+  describe('Normal filters', () => {
+    it('check if i can filter on a allowed field', () => {
+      let query = { filters: { b: { $eq: 'a' } } };
+      info = { fields: ['b'] };
+      expect(protectRoute(query, info)).toMatchSnapshot();
+    });
+    it("ensure that I can't filter on none allowed fields", () => {
+      let query = { filters: { a: { $eq: 'a' } } };
+      info = { fields: ['b'] };
+      expect(protectRoute(query, info)).toMatchSnapshot();
+    });
+  });
+  describe('joins Filters', () => {
+    it('should ignore $and', () => {
+      let query = {
+        filters: { $and: [{ a: { $eq: 'a' } }, { b: { $eq: 'b' } }, { c: { $eq: 'c' } }] },
+      };
+      info = { fields: ['a', 'b'] };
+      expect(protectRoute(query, info)).toMatchSnapshot();
+    });
+    it('should ignore $or', () => {
+      let query = {
+        filters: { $or: [{ a: { $eq: 'a' } }, { b: { $eq: 'b' } }, { c: { $eq: 'c' } }] },
+      };
+      info = { fields: ['a', 'b'] };
+      expect(protectRoute(query, info)).toMatchSnapshot();
+    });
+    it('should ignore $not and work', () => {
+      let query = {
+        filters: { $not: { a: { $eq: 'a' } } },
+      };
+      info = { fields: ['a', 'b'] };
+      expect(protectRoute(query, info)).toMatchSnapshot();
+    });
+    it('should ignore $not and and ignore none existing fields', () => {
+      let query = {
+        filters: { $not: { c: { $eq: 'a' } } },
+      };
+      info = { fields: ['a', 'b'] };
       expect(protectRoute(query, info)).toMatchSnapshot();
     });
   });

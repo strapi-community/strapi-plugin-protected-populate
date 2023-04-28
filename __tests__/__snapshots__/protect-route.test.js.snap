@@ -1,59 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Protect routes DZ array populate should populate DZ with populate array 1`] = `
+exports[`Protect filters Normal filters check if i can filter on a allowed field 1`] = `
 {
-  "on": {
-    "a.a": {
-      "fields": [
-        "c",
-        "d",
-      ],
-      "populate": {
-        "c": {
-          "fields": [
-            "a",
-            "b",
-          ],
-          "populate": {},
-        },
-        "d": {
-          "fields": [
-            "a",
-            "b",
-          ],
-          "populate": {},
-        },
-      },
-    },
-    "a.b": {
-      "fields": [
-        "c",
-        "d",
-      ],
-      "populate": {
-        "c": {
-          "fields": [
-            "a",
-            "b",
-          ],
-          "populate": {},
-        },
-      },
-    },
-    "a.c": {
-      "fields": [
-        "e",
-        "f",
-      ],
-      "populate": {},
+  "fields": [
+    "b",
+  ],
+  "filters": {
+    "b": {
+      "$eq": "a",
     },
   },
+  "populate": {},
 }
 `;
 
-exports[`Protect routes DZ object = true should populate DZ if DZ value is true 1`] = `
+exports[`Protect filters Normal filters ensure that I can't filter on none allowed fields 1`] = `
+{
+  "fields": [
+    "b",
+  ],
+  "filters": {},
+  "populate": {},
+}
+`;
+
+exports[`Protect filters joins Filters should ignore $and 1`] = `
+{
+  "fields": [
+    "a",
+    "b",
+  ],
+  "filters": {
+    "$and": [
+      {
+        "a": {
+          "$eq": "a",
+        },
+      },
+      {
+        "b": {
+          "$eq": "b",
+        },
+      },
+      {},
+    ],
+  },
+  "populate": {},
+}
+`;
+
+exports[`Protect filters joins Filters should ignore $not and and ignore none existing fields 1`] = `
+{
+  "fields": [
+    "a",
+    "b",
+  ],
+  "filters": {},
+  "populate": {},
+}
+`;
+
+exports[`Protect filters joins Filters should ignore $not and work 1`] = `
+{
+  "fields": [
+    "a",
+    "b",
+  ],
+  "filters": {},
+  "populate": {},
+}
+`;
+
+exports[`Protect filters joins Filters should ignore $or 1`] = `
+{
+  "fields": [
+    "a",
+    "b",
+  ],
+  "filters": {
+    "$or": [
+      {
+        "a": {
+          "$eq": "a",
+        },
+      },
+      {
+        "b": {
+          "$eq": "b",
+        },
+      },
+      {},
+    ],
+  },
+  "populate": {},
+}
+`;
+
+exports[`Protect populate DZ array populate should populate DZ with populate array 1`] = `
+{
+  "fields": undefined,
+  "filters": undefined,
+  "populate": undefined,
+}
+`;
+
+exports[`Protect populate DZ object = true should populate DZ if DZ value is true 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "dz": {
       "on": {
@@ -81,9 +135,10 @@ exports[`Protect routes DZ object = true should populate DZ if DZ value is true 
 }
 `;
 
-exports[`Protect routes DZ on should populate DZ name only if on is empty 1`] = `
+exports[`Protect populate DZ on should populate DZ name only if on is empty 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "dz": {
       "on": {},
@@ -92,9 +147,10 @@ exports[`Protect routes DZ on should populate DZ name only if on is empty 1`] = 
 }
 `;
 
-exports[`Protect routes DZ on should populate DZ only selected fields/populates 1`] = `
+exports[`Protect populate DZ on should populate DZ only selected fields/populates 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "dz": {
       "on": {
@@ -117,9 +173,10 @@ exports[`Protect routes DZ on should populate DZ only selected fields/populates 
 }
 `;
 
-exports[`Protect routes DZ populate * should populate DZ * 1`] = `
+exports[`Protect populate DZ populate * should populate DZ * 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "abc": {
       "fields": [
@@ -153,82 +210,26 @@ exports[`Protect routes DZ populate * should populate DZ * 1`] = `
 }
 `;
 
-exports[`Protect routes DZ populate fields populate DZ fields 1`] = `
+exports[`Protect populate DZ populate fields populate DZ fields 1`] = `
 {
-  "on": {
-    "a.a": {
-      "fields": [
-        "c",
-      ],
-    },
-    "a.b": {
-      "fields": [
-        "c",
-      ],
-    },
-    "a.c": {
-      "fields": [
-        "f",
-      ],
-    },
-  },
+  "fields": undefined,
+  "filters": undefined,
+  "populate": undefined,
 }
 `;
 
-exports[`Protect routes DZ populate should populate DZ and split populate between all components 1`] = `
+exports[`Protect populate DZ populate should populate DZ and split populate between all components 1`] = `
 {
-  "on": {
-    "a.a": {
-      "fields": [
-        "c",
-        "d",
-      ],
-      "populate": {
-        "c": {
-          "fields": [
-            "a",
-            "b",
-          ],
-          "populate": {},
-        },
-        "d": {
-          "fields": [
-            "a",
-            "b",
-          ],
-          "populate": {},
-        },
-      },
-    },
-    "a.b": {
-      "fields": [
-        "c",
-        "d",
-      ],
-      "populate": {
-        "c": {
-          "fields": [
-            "a",
-            "b",
-          ],
-          "populate": {},
-        },
-      },
-    },
-    "a.c": {
-      "fields": [
-        "e",
-        "f",
-      ],
-      "populate": {},
-    },
-  },
+  "fields": undefined,
+  "filters": undefined,
+  "populate": undefined,
 }
 `;
 
-exports[`Protect routes Normal * populate populate * should only show first level down 1`] = `
+exports[`Protect populate Normal * populate populate * should only show first level down 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "a": {
       "fields": [
@@ -240,9 +241,10 @@ exports[`Protect routes Normal * populate populate * should only show first leve
 }
 `;
 
-exports[`Protect routes Normal array populate populate should only populate should handle 3 populates 1`] = `
+exports[`Protect populate Normal array populate populate should only populate should handle 3 populates 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "a": {
       "fields": [],
@@ -265,9 +267,10 @@ exports[`Protect routes Normal array populate populate should only populate shou
 }
 `;
 
-exports[`Protect routes Normal array populate populate should still protect in array 1`] = `
+exports[`Protect populate Normal array populate populate should still protect in array 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "a": {
       "fields": [],
@@ -282,18 +285,20 @@ exports[`Protect routes Normal array populate populate should still protect in a
 }
 `;
 
-exports[`Protect routes Normal fields should only populate what is allowed 1`] = `
+exports[`Protect populate Normal fields should only populate what is allowed 1`] = `
 {
   "fields": [
     "b",
   ],
+  "filters": undefined,
   "populate": {},
 }
 `;
 
-exports[`Protect routes Normal fields should return correctly if nested in populate 1`] = `
+exports[`Protect populate Normal fields should return correctly if nested in populate 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "abc": {
       "fields": [
@@ -305,56 +310,64 @@ exports[`Protect routes Normal fields should return correctly if nested in popul
 }
 `;
 
-exports[`Protect routes Normal fields should return full info when unexpected fields input 1`] = `
+exports[`Protect populate Normal fields should return full info when unexpected fields input 1`] = `
 {
   "fields": [
     "b",
   ],
+  "filters": undefined,
   "populate": {},
 }
 `;
 
-exports[`Protect routes Normal fields should return no fields noting 1`] = `
+exports[`Protect populate Normal fields should return no fields noting 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {},
 }
 `;
 
-exports[`Protect routes Normal fields should return only the fields in info when fields does not exist 1`] = `
+exports[`Protect populate Normal fields should return only the fields in info when fields does not exist 1`] = `
 {
   "fields": [
     "b",
   ],
+  "filters": undefined,
   "populate": {},
 }
 `;
 
-exports[`Protect routes Normal object = true populate populate a: true should populate 1 level of a only 1`] = `
+exports[`Protect populate Normal object = true populate populate a: true should populate 1 level of a only 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "a": true,
   },
 }
 `;
 
-exports[`Protect routes Normal populate populate should not populate anyting if info has no populate 1`] = `
+exports[`Protect populate Normal populate populate should not populate anyting if info has no populate 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {},
 }
 `;
 
-exports[`Protect routes Normal populate populate should not populate anyting if quary has no populate 1`] = `
+exports[`Protect populate Normal populate populate should not populate anyting if quary has no populate 1`] = `
 {
   "fields": [],
+  "filters": undefined,
+  "populate": undefined,
 }
 `;
 
-exports[`Protect routes Normal populate populate should only populate if in info 1`] = `
+exports[`Protect populate Normal populate populate should only populate if in info 1`] = `
 {
   "fields": [],
+  "filters": undefined,
   "populate": {
     "b": {
       "fields": [],

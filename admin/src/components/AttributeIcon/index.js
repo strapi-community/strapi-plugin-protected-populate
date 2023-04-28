@@ -50,6 +50,7 @@ const iconByTypes = {
   time: Date,
   timestamp: Date,
   uid: Uid,
+  id: Uid,
 };
 
 const IconBox = styled(Box)`

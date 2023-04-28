@@ -10,7 +10,7 @@ const { parseType } = require('@strapi/utils');
 
 */
 
-const protectRoute = (populate, info) => {
+const protectPopulate = (populate, info) => {
   let mainBoolean;
   try {
     mainBoolean = parseType('boolean', populate);
@@ -69,7 +69,7 @@ const protectRoute = (populate, info) => {
       } else if (mainBoolean == true) {
         let populateAllowed = {};
         for (const key of Object.keys(info.on)) {
-          let populateData = protectRoute({}, info.on[key]);
+          let populateData = protectPopulate({}, info.on[key]);
           populateAllowed[key] = populateData;
         }
         populate.on = populateAllowed;
@@ -77,7 +77,7 @@ const protectRoute = (populate, info) => {
         let populateAllowed = {};
         for (const [key, _] of Object.entries(populate.on)) {
           if (key in info.on) {
-            let data = protectRoute(populate.on[key], info.on[key]);
+            let data = protectPopulate(populate.on[key], info.on[key]);
             populateAllowed[key] = data;
           }
         }
@@ -88,7 +88,7 @@ const protectRoute = (populate, info) => {
       const AllowedList = {};
       AllowedList['on'] = {};
       Object.keys(info.on).forEach((key) => {
-        let data = protectRoute(JSON.parse(JSON.stringify(populate)), info.on[key]);
+        let data = protectPopulate(JSON.parse(JSON.stringify(populate)), info.on[key]);
         AllowedList['on'][key] = data;
       });
       populate = AllowedList;
@@ -97,7 +97,7 @@ const protectRoute = (populate, info) => {
       let AllowedList = {};
       AllowedList['on'] = {};
       Object.keys(info.on).forEach((key) => {
-        let data = protectRoute({}, info.on[key]);
+        let data = protectPopulate({}, info.on[key]);
         AllowedList['on'][key] = data;
       });
       delete populate['fields'];
@@ -111,7 +111,7 @@ const protectRoute = (populate, info) => {
     } else if (populate.populate === '*' || mainBoolean === true) {
       let populateAllowed = {};
       for (const key of Object.keys(info.populate)) {
-        let data = protectRoute({}, info.populate[key]);
+        let data = protectPopulate({}, info.populate[key]);
         populateAllowed[key] = data;
       }
       populate.populate = populateAllowed;
@@ -119,7 +119,7 @@ const protectRoute = (populate, info) => {
       let populateAllowed = {};
       for (const [key, _] of Object.entries(populate.populate)) {
         if (key in info.populate) {
-          let data = protectRoute(populate.populate[key], info.populate[key]);
+          let data = protectPopulate(populate.populate[key], info.populate[key]);
           populateAllowed[key] = data;
         }
       }
@@ -129,6 +129,49 @@ const protectRoute = (populate, info) => {
   return populate;
 };
 
+const joinsFiltersArray = ['$or', '$and'];
+const joinsFiltersObject = ['$not'];
+const protectFilters = (filters, info) => {
+  if (filters === undefined) {
+    return undefined;
+  }
+  let filtersAllowed = {};
+  for (const key of Object.keys(filters)) {
+    //TODO check if joinsFilters are cease sensative
+    if (joinsFiltersArray.includes(key)) {
+      if (Array.isArray(filters[key])) {
+        filtersAllowed[key] = [];
+        for (const object of filters[key]) {
+          if (typeof object === 'object') {
+            filtersAllowed[key].push(protectFilters(object, info));
+          }
+        }
+      }
+    } else if (joinsFiltersObject.includes(key)) {
+      for (const object of Object.keys(filters[key])) {
+        if (typeof object === 'object') {
+          filtersAllowed[key] = protectFilters(object, info);
+        }
+      }
+    } else if (Array.isArray(info.fields) && info.fields.includes(key)) {
+      filtersAllowed[key] = filters[key];
+    } else if (info.populate !== undefined && info.populate[key] !== undefined) {
+      filtersAllowed[key] = protectFilters(filters[key], info.populate[key]);
+    }
+  }
+  return filtersAllowed;
+};
+
+const protectRoute = (query, info) => {
+  const savePopulate = protectPopulate(query, info);
+  query.populate = savePopulate.populate;
+  query.fields = savePopulate.fields;
+  query.filters = protectFilters(query.filters, info);
+  return query;
+};
+
 module.exports = {
+  protectPopulate,
+  protectFilters,
   protectRoute,
 };
