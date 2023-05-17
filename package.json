@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-protected-populate",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Protects your populates from the url against bad actors.",
   "strapi": {
     "name": "protected-populate",
