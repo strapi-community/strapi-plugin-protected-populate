@@ -77,8 +77,8 @@ WIP
 ### Config
 
 standard config
-
-```js
+add the following config to your config/plugins.js
+```js 
 module.exports = () => {
   return {
     'protected-populate': {
@@ -90,6 +90,7 @@ module.exports = () => {
 
 enable auto populate will automatically populate all fields and populates if no ctx.query.populate / ctx.query.fields is found.
 
+add the following config to your config/plugins.js
 ```js
 module.exports = () => {
   return {
