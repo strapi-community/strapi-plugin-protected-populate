@@ -2,8 +2,8 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Typography, Flex } from '@strapi/design-system';
-import checkmarkIcon from '@strapi/design-system/BaseCheckbox/assets/checkmark';
-import checkmarkIconDisabled from '@strapi/design-system/BaseCheckbox/assets/checkmark-black';
+import checkmarkIcon from '@strapi/design-system/BaseCheckbox/assets/checkmark.svg';
+import checkmarkIconDisabled from '@strapi/design-system/BaseCheckbox/assets/checkmark-black.svg';
 const CheckMark = styled.div`
   border: 1px solid
     ${({ theme, selected, indeterminate }) =>
