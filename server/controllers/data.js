@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 module.exports = ({ strapi }) => ({
   contentTypes(ctx) {
     ctx.body = strapi.plugin('protected-populate').service('data').getContentTypes();
