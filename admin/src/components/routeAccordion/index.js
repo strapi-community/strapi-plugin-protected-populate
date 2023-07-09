@@ -151,6 +151,7 @@ const RouteAccordion = ({
             name="Enable roles form user and permissions"
             onValueChange={() => changeRolesEnabled()}
             value={rolesEnabled}
+            disabled={!autoReload}
           />
           <br />
           {rolesEnabled ? (
@@ -176,7 +177,7 @@ const RouteAccordion = ({
                         multi
                         withTags
                       >
-                        {roles.map(function (role) {
+                        {autoReload && roles.map(function (role) {
                           if (role.type !== modelRoleCloneFrom) {
                             return (
                               <Option value={role.type} key={role.type}>

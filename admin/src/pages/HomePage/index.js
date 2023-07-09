@@ -179,7 +179,7 @@ const HomePage = () => {
                 startIcon={<Check />}
                 onClick={() => submitData()}
                 type="submit"
-                disabled={oldData === selectedCheckboxes}
+                disabled={oldData === selectedCheckboxes || !autoReload}
               >
                 Save
               </Button>
