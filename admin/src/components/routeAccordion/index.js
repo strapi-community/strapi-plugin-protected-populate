@@ -16,8 +16,7 @@ import {
   IconButton,
   BaseCheckbox,
   AccordionGroup,
-  Flex,
-  TextButton,
+  Option,
   Typography,
   ModalLayout,
   ModalHeader,
@@ -28,7 +27,6 @@ import {
 import { Trash, Plus } from '@strapi/icons';
 import List from '../List';
 import RoleAccordion from '../roleAccordion';
-import Option from './Option';
 const RouteAccordion = ({
   autoReload,
   routeName,
