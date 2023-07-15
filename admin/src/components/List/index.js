@@ -41,15 +41,22 @@ function List({
       relation: 'oneToMany',
       target: 'admin::user',
     }),
-      (items.schema.attributes.updatedBy = {
+      items.schema.attributes.updatedBy = {
         type: 'relation',
         relation: 'oneToMany',
         target: 'admin::user',
-      });
+      };
   }
   if (items.schema.draftAndPublish) {
     items.schema.attributes.publishedAt = {
       type: 'datetime',
+    };
+  }
+  if (items.schema?.pluginOptions?.i18n?.localized === true) {
+    items.schema.attributes.localizations = {
+      type: 'relation',
+      relation: 'oneToMany',
+      target: items.uid,
     };
   }
   return (
