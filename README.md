@@ -16,20 +16,17 @@
 
 ## Table of Contents <!-- omit in toc -->
 
-- [🚦 Current Status](#-current-status)
-- [✨ Features](#-features)
-- [🤔 Motivation](#-motivation)
-- [🖐 Requirements](#-requirements)
-- [⏳ Installation](#-installation)
-- [🔧 Configuration](#-configuration)
+- [🚦 Current Status](#current-status)
+- [✨ Features](#features)
+- [🤔 Motivation](#motivation)
+- [🖐 Requirements](#requirements)
+- [⏳ Installation](#installation)
+- [🔧 Configuration](#configuration)
 - [Contributing](#contributing)
 - [Migration](#migration)
 - [License](#license)
 
 ## 🚦 Current Status
-
-This package is currently under development and should be consider **ALPHA** in terms of state. I/We are currently accepting contributions.
-
 For more information on contributing please see [the contrib message below](#contributing).
 
 ## ✨ Features
