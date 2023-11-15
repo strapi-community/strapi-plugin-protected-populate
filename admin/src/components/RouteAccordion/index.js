@@ -26,7 +26,7 @@ import {
 } from '@strapi/design-system';
 import { Trash, Plus } from '@strapi/icons';
 import List from '../List';
-import RoleAccordion from '../roleAccordion';
+import RoleAccordion from '../RoleAccordion';
 const RouteAccordion = ({
   autoReload,
   routeName,
