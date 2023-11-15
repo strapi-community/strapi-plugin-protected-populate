@@ -30,7 +30,7 @@ import {
 } from '@strapi/design-system';
 import { Plus, Check } from '@strapi/icons';
 import axios from '../../utils/axiosInstance';
-import RouteAccordion from '../../components/routeAccordion';
+import RouteAccordion from '../../components/RouteAccordion';
 import serverRestartWatcher from '../../utils/serverRestartWatcher';
 const HomePage = () => {
   const { lockAppWithAutoreload, unlockAppWithAutoreload } = useAutoReloadOverlayBlocker();
