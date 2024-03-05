@@ -58,6 +58,9 @@ function List({
       relation: 'oneToMany',
       target: items.uid,
     };
+    items.schema.attributes.locale = {
+      type: 'text',
+    };
   }
   return (
     <BoxWrapper>
