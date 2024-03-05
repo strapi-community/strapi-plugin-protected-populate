@@ -3,6 +3,7 @@
 exports[`Protect filters Normal filters check if i can filter on a allowed field 1`] = `
 {
   "fields": [
+    "id",
     "b",
   ],
   "filters": {
@@ -17,6 +18,7 @@ exports[`Protect filters Normal filters check if i can filter on a allowed field
 exports[`Protect filters Normal filters ensure that I can't filter on none allowed fields 1`] = `
 {
   "fields": [
+    "id",
     "b",
   ],
   "filters": {},
@@ -27,6 +29,7 @@ exports[`Protect filters Normal filters ensure that I can't filter on none allow
 exports[`Protect filters joins Filters should ignore $and 1`] = `
 {
   "fields": [
+    "id",
     "a",
     "b",
   ],
@@ -52,6 +55,7 @@ exports[`Protect filters joins Filters should ignore $and 1`] = `
 exports[`Protect filters joins Filters should ignore $not and and ignore none existing fields 1`] = `
 {
   "fields": [
+    "id",
     "a",
     "b",
   ],
@@ -63,6 +67,7 @@ exports[`Protect filters joins Filters should ignore $not and and ignore none ex
 exports[`Protect filters joins Filters should ignore $not and work 1`] = `
 {
   "fields": [
+    "id",
     "a",
     "b",
   ],
@@ -74,6 +79,7 @@ exports[`Protect filters joins Filters should ignore $not and work 1`] = `
 exports[`Protect filters joins Filters should ignore $or 1`] = `
 {
   "fields": [
+    "id",
     "a",
     "b",
   ],
@@ -100,31 +106,87 @@ exports[`Protect populate DZ array populate should populate DZ with populate arr
 {
   "fields": undefined,
   "filters": undefined,
-  "populate": undefined,
+  "populate": {
+    "a.a": {
+      "fields": [
+        "id",
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "id",
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+        "d": {
+          "fields": [
+            "id",
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.b": {
+      "fields": [
+        "id",
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "id",
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.c": {
+      "fields": [
+        "id",
+        "e",
+        "f",
+      ],
+      "populate": {},
+    },
+  },
 }
 `;
 
 exports[`Protect populate DZ object = true should populate DZ if DZ value is true 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "dz": {
       "on": {
         "a.a": {
           "fields": [
+            "id",
             "c",
             "d",
           ],
         },
         "a.b": {
           "fields": [
+            "id",
             "c",
             "d",
           ],
         },
         "a.c": {
           "fields": [
+            "id",
             "e",
             "f",
           ],
@@ -137,7 +199,9 @@ exports[`Protect populate DZ object = true should populate DZ if DZ value is tru
 
 exports[`Protect populate DZ on should populate DZ name only if on is empty 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "dz": {
@@ -149,18 +213,22 @@ exports[`Protect populate DZ on should populate DZ name only if on is empty 1`] 
 
 exports[`Protect populate DZ on should populate DZ only selected fields/populates 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "dz": {
       "on": {
         "a.a": {
           "fields": [
+            "id",
             "c",
           ],
           "populate": {
             "c": {
               "fields": [
+                "id",
                 "a",
               ],
               "populate": {},
@@ -175,11 +243,14 @@ exports[`Protect populate DZ on should populate DZ only selected fields/populate
 
 exports[`Protect populate DZ populate * should populate DZ * 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "abc": {
       "fields": [
+        "id",
         "a",
         "b",
       ],
@@ -188,18 +259,21 @@ exports[`Protect populate DZ populate * should populate DZ * 1`] = `
       "on": {
         "a.a": {
           "fields": [
+            "id",
             "c",
             "d",
           ],
         },
         "a.b": {
           "fields": [
+            "id",
             "c",
             "d",
           ],
         },
         "a.c": {
           "fields": [
+            "id",
             "e",
             "f",
           ],
@@ -214,7 +288,26 @@ exports[`Protect populate DZ populate fields populate DZ fields 1`] = `
 {
   "fields": undefined,
   "filters": undefined,
-  "populate": undefined,
+  "populate": {
+    "a.a": {
+      "fields": [
+        "id",
+        "c",
+      ],
+    },
+    "a.b": {
+      "fields": [
+        "id",
+        "c",
+      ],
+    },
+    "a.c": {
+      "fields": [
+        "id",
+        "f",
+      ],
+    },
+  },
 }
 `;
 
@@ -222,17 +315,71 @@ exports[`Protect populate DZ populate should populate DZ and split populate betw
 {
   "fields": undefined,
   "filters": undefined,
-  "populate": undefined,
+  "populate": {
+    "a.a": {
+      "fields": [
+        "id",
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "id",
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+        "d": {
+          "fields": [
+            "id",
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.b": {
+      "fields": [
+        "id",
+        "c",
+        "d",
+      ],
+      "populate": {
+        "c": {
+          "fields": [
+            "id",
+            "a",
+            "b",
+          ],
+          "populate": {},
+        },
+      },
+    },
+    "a.c": {
+      "fields": [
+        "id",
+        "e",
+        "f",
+      ],
+      "populate": {},
+    },
+  },
 }
 `;
 
 exports[`Protect populate Normal * populate populate * should only show first level down 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "a": {
       "fields": [
+        "id",
         "a",
         "z",
       ],
@@ -243,17 +390,24 @@ exports[`Protect populate Normal * populate populate * should only show first le
 
 exports[`Protect populate Normal array populate populate should only populate should handle 3 populates 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "a": {
-      "fields": [],
+      "fields": [
+        "id",
+      ],
       "populate": {
         "b": {
-          "fields": [],
+          "fields": [
+            "id",
+          ],
           "populate": {
             "c": {
               "fields": [
+                "id",
                 "a",
                 "b",
               ],
@@ -269,14 +423,20 @@ exports[`Protect populate Normal array populate populate should only populate sh
 
 exports[`Protect populate Normal array populate populate should still protect in array 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "a": {
-      "fields": [],
+      "fields": [
+        "id",
+      ],
       "populate": {
         "b": {
-          "fields": [],
+          "fields": [
+            "id",
+          ],
           "populate": {},
         },
       },
@@ -288,6 +448,7 @@ exports[`Protect populate Normal array populate populate should still protect in
 exports[`Protect populate Normal fields should only populate what is allowed 1`] = `
 {
   "fields": [
+    "id",
     "b",
   ],
   "filters": undefined,
@@ -297,11 +458,14 @@ exports[`Protect populate Normal fields should only populate what is allowed 1`]
 
 exports[`Protect populate Normal fields should return correctly if nested in populate 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "abc": {
       "fields": [
+        "id",
         "b",
       ],
       "populate": {},
@@ -313,6 +477,7 @@ exports[`Protect populate Normal fields should return correctly if nested in pop
 exports[`Protect populate Normal fields should return full info when unexpected fields input 1`] = `
 {
   "fields": [
+    "id",
     "b",
   ],
   "filters": undefined,
@@ -322,7 +487,9 @@ exports[`Protect populate Normal fields should return full info when unexpected 
 
 exports[`Protect populate Normal fields should return no fields noting 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {},
 }
@@ -331,6 +498,7 @@ exports[`Protect populate Normal fields should return no fields noting 1`] = `
 exports[`Protect populate Normal fields should return only the fields in info when fields does not exist 1`] = `
 {
   "fields": [
+    "id",
     "b",
   ],
   "filters": undefined,
@@ -340,7 +508,9 @@ exports[`Protect populate Normal fields should return only the fields in info wh
 
 exports[`Protect populate Normal object = true populate populate a: true should populate 1 level of a only 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "a": true,
@@ -350,7 +520,9 @@ exports[`Protect populate Normal object = true populate populate a: true should 
 
 exports[`Protect populate Normal populate populate should not populate anyting if info has no populate 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {},
 }
@@ -358,7 +530,9 @@ exports[`Protect populate Normal populate populate should not populate anyting i
 
 exports[`Protect populate Normal populate populate should not populate anyting if quary has no populate 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": undefined,
 }
@@ -366,11 +540,15 @@ exports[`Protect populate Normal populate populate should not populate anyting i
 
 exports[`Protect populate Normal populate populate should only populate if in info 1`] = `
 {
-  "fields": [],
+  "fields": [
+    "id",
+  ],
   "filters": undefined,
   "populate": {
     "b": {
-      "fields": [],
+      "fields": [
+        "id",
+      ],
       "populate": {},
     },
   },
