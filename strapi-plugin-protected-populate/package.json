@@ -1,0 +1,41 @@
+{
+  "name": "strapi-plugin-protected-populate",
+  "version": "1.3.6",
+  "description": "Protects your populates from the url against bad actors.",
+  "strapi": {
+    "name": "protected-populate",
+    "description": "Protects your populates from the url against bad actors if configured correctly.",
+    "kind": "plugin",
+    "displayName": "Protected Populate"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^1.4.1"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.5.3"
+  },
+  "author": {
+    "name": "Boegie19"
+  },
+  "maintainers": [
+    {
+      "name": "Boegie19"
+    }
+  ],
+  "scripts": {
+    "test": "jest /",
+    "prettier:code": "prettier \"**/*.js\"",
+    "prettier:other": "prettier \"**/*.{md,css,scss,yaml,yml}\"",
+    "prettier:code:write": "prettier --write \"**/*.js\"",
+    "prettier:other:write": "prettier --write \"**/*.{md,css,scss,yaml,yml}\""
+  },
+  "engines": {
+    "node": ">=14.19.1",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.3.1",
+    "prettier": "2.8.1"
+  }
+}
