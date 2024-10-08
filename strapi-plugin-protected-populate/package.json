@@ -9,7 +9,7 @@
     "displayName": "Protected Populate"
   },
   "dependencies": {
-    "@strapi/design-system": "^1.4.1"
+    "@strapi/design-system": "^1.19.0"
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.5.3"
