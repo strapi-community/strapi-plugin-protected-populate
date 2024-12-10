@@ -6,8 +6,7 @@
 
 /* eslint-disable import/no-cycle */
 import React from 'react';
-import { Box } from '@strapi/design-system/Box';
-import { Typography } from '@strapi/design-system/Typography';
+import { Box, Typography } from '@strapi/design-system';
 import SelectRender from '../SelectRender';
 import BoxWrapper from './BoxWrapper';
 

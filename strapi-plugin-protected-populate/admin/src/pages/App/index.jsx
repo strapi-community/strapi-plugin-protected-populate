@@ -6,20 +6,17 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { NotFound, CheckPagePermissions } from '@strapi/helper-plugin';
+import {Route, Routes} from 'react-router-dom';
 import pluginId from '../../pluginId';
 import pluginPermissions from '../../permissions';
 import HomePage from '../HomePage';
-
+import { EmptyStateLayout } from '@strapi/design-system';
+import { Page } from '@strapi/strapi/admin';
 const App = () => {
   return (
-    <CheckPagePermissions permissions={pluginPermissions.main}>
-      <Switch>
-        <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
-        <Route component={NotFound} />
-      </Switch>
-    </CheckPagePermissions>
+    (<Page.Protect permissions={pluginPermissions.main}>
+      <HomePage/>
+    </Page.Protect>)
   );
 };
 

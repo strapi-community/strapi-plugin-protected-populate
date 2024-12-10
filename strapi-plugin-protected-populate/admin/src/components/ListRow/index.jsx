@@ -1,12 +1,6 @@
 import React, { memo } from 'react';
-import get from 'lodash/get';
-import { useIntl } from 'react-intl';
-import { Flex } from '@strapi/design-system/Flex';
-import { BaseCheckbox } from '@strapi/design-system';
-import { Stack } from '@strapi/design-system/Stack';
-import { Typography } from '@strapi/design-system/Typography';
-import { Box } from '@strapi/design-system/Box';
-import { stopPropagation, onRowClick, pxToRem } from '@strapi/helper-plugin';
+import { Checkbox , Flex } from '@strapi/design-system';
+import { Typography } from '@strapi/design-system';
 import Curve from '../../icons/Curve';
 import BoxWrapper from './BoxWrapper';
 import AttributeIcon from '../AttributeIcon';
@@ -47,10 +41,10 @@ function ListRow({
     <BoxWrapper as="tr">
       <td style={{ position: 'relative' }}>
         {isMain !== true && <Curve color={isFromDynamicZone ? 'primary200' : 'neutral150'} />}
-        <Stack paddingLeft={2} spacing={4} horizontal>
+        <Flex paddingLeft={2} spacing={4} horizontal>
           <AttributeIcon type={src} customField={customField} />
           <Typography fontWeight="bold">{name}</Typography>
-        </Stack>
+        </Flex>
       </td>
       <td>
         {target ? (
@@ -63,12 +57,12 @@ function ListRow({
         )}
       </td>
       <td>
-        <Flex justifyContent="flex-end" {...stopPropagation}>
-          <BaseCheckbox
+        <Flex justifyContent="flex-end">
+          <Checkbox
             disabled={!autoReload}
             aria-label="Select"
-            onValueChange={(val) => setValue(val)}
-            value={value}
+            onCheckedChange={(val) => setValue(val)}
+            checked={value}
           />
         </Flex>
       </td>

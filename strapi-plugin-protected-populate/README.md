@@ -1,6 +1,6 @@
 <div align="center">
 <h1>Strapi Protected Populate Plugin</h1>
-	
+    
 <p>
   <a href="https://discord.strapi.io">
     <img src="https://img.shields.io/discord/811989166782021633?color=blue&label=strapi-discord" alt="Strapi Discord">
@@ -34,7 +34,7 @@ For more information on contributing please see [the contrib message below](#con
 These are the primary features that are finished or currently being worked on:
 
 - [x] Protected your Get request populates and fields
-- [x] Allow you to protect routes per role (In the near future)
+- [x] Allow you to protect routes per role
 
 ## 🤔 Motivation
 
@@ -44,7 +44,13 @@ I made this plugin since I got sick and tired of writing complex policies to do 
 ## 🖐 Requirements
 
 Supported Strapi Versions:
+Plugin  V2
+| Strapi Version | Supported | Tested On     |
+| -------------- | --------- | ------------- |
+| v4             | ❌        | N/A           |
+| v5             | ✅        | April 2023    |
 
+Plutin V1
 | Strapi Version | Supported | Tested On     |
 | -------------- | --------- | ------------- |
 | v3             | ❌        | N/A           |
@@ -52,6 +58,7 @@ Supported Strapi Versions:
 | v4.5.3/4.6.2   | ✅        | December 2022 |
 | v4.7.0/4.7.1   | ❌        | N/A           |
 | v4.8.0+        | ✅        | April 2023    |
+| v5             | ❌        | April 2023    |
 
 **This plugin will not work on any version older then v4.5.3 since I am using the on syntax for dynamic zones wat was added in that version**
 

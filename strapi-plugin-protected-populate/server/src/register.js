@@ -6,6 +6,7 @@ module.exports = ({ strapi }) => {
     const fileData = fs.readFileSync(strapi.dirs.app.src + `/protected-populate/index.json`, {
       encoding: 'utf8',
     });
+    console.log(strapi.plugins)
     strapi.plugin('protected-populate').protectedRoutes = JSON.parse(fileData);
   } else {
     strapi.plugin('protected-populate').protectedRoutes = {};

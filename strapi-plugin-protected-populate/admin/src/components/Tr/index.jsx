@@ -1,4 +1,4 @@
-import { pxToRem } from '@strapi/helper-plugin';
+
 import styled from 'styled-components';
 
 // Keep component-row for css specificity
@@ -13,12 +13,12 @@ const Tr = styled.tr`
     }
 
     > td:first-of-type {
-      padding: 0 0 0 ${pxToRem(20)};
+      padding: 0 0 0 ${20 / 16};
       position: relative;
 
       &::before {
         content: '';
-        width: ${pxToRem(4)};
+        width: ${4 / 16};
         height: calc(100%);
         position: absolute;
         top: -7px;

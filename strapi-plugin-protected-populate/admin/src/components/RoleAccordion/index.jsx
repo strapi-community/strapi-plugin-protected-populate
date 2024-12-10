@@ -1,13 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {
-  Box,
-  Accordion,
-  AccordionToggle,
-  AccordionContent,
-  Stack,
-  IconButton,
-} from '@strapi/design-system';
+import { Box, Accordion, Flex, IconButton } from '@strapi/design-system';
 import { Duplicate } from '@strapi/icons';
 import List from '../List';
 const RoleAccordion = ({
@@ -32,21 +25,16 @@ const RoleAccordion = ({
   console.log(expandedID);
   console.log(role.type);
   return (
-    <Accordion expanded={expandedID === role.type} onToggle={handleToggle(role.type)} size="S">
-      <AccordionToggle
-        action={
-          <Stack horizontal spacing={0}>
-            <IconButton
-              onClick={() => handleSetIsVisible(true, role.type)}
-              label="Clone"
-              icon={<Duplicate />}
-            />
-          </Stack>
-        }
-        title={role.name}
-        togglePosition="left"
-      />
-      <AccordionContent>
+    <Accordion.Item value={role.type} onToggle={handleToggle(role.type)} size="S">
+      <Accordion.Header>
+        <Accordion.Trigger description="Your personal information">{role.name}</Accordion.Trigger>
+        <Accordion.Actions>
+          <IconButton onClick={() => handleSetIsVisible(true, role.type)} label="Clone">
+            <Duplicate />
+          </IconButton>
+        </Accordion.Actions>
+      </Accordion.Header>
+      <Accordion.Content>
         <Box background="neutral0" shadow="filterShadow" hasRadius>
           <List
             items={items}
@@ -59,8 +47,8 @@ const RoleAccordion = ({
             isMain={isMain}
           />
         </Box>
-      </AccordionContent>
-    </Accordion>
+      </Accordion.Content>
+    </Accordion.Item>
   );
 };
 

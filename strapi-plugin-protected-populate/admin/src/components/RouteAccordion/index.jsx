@@ -6,25 +6,18 @@
 
 import React from 'react';
 import { useState } from 'react';
+import { Select } from '@strapi/ui-primitives';
 import {
-  Select,
   Box,
   Accordion,
-  AccordionToggle,
-  AccordionContent,
-  Stack,
+  Flex,
   IconButton,
-  BaseCheckbox,
-  AccordionGroup,
-  Option,
+  Checkbox,
   Typography,
-  ModalLayout,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
+  Modal,
   Button,
 } from '@strapi/design-system';
-import { Trash, Plus } from '@strapi/icons';
+import { Trash } from '@strapi/icons';
 import List from '../List';
 import RoleAccordion from '../RoleAccordion';
 const RouteAccordion = ({
@@ -78,6 +71,7 @@ const RouteAccordion = ({
   const rolesEnabled = typeof selectedCheckboxes[routeName]['roles'] !== 'undefined';
 
   const changeRolesEnabled = () => {
+    console.log("Test123")
     if (rolesEnabled) {
       selectedCheckboxes[routeName]['populate'] =
         selectedCheckboxes[routeName]['roles']['public']['populate'];
@@ -101,29 +95,27 @@ const RouteAccordion = ({
   };
 
   return (
-    <Accordion expanded={expandedID === name} onToggle={handleToggle(name)} size="S">
-      <AccordionToggle
-        action={
-          <Stack horizontal spacing={0}>
-            <IconButton
-              onClick={() => {
-                if (!autoReload) {
-                  return;
-                }
-                delete selectedCheckboxes[routeName];
-                updateSelectedCheckboxes();
-              }}
-              label="Delete"
-              icon={<Trash />}
-            />
-          </Stack>
-        }
-        title={name}
-        togglePosition="left"
-      />
-      <AccordionContent>
+    <Accordion.Item value={name} onToggle={handleToggle(name)} size="S">
+      <Accordion.Header>
+        <Accordion.Trigger description="Your personal information">{name}</Accordion.Trigger>
+        <Accordion.Actions>
+          <IconButton
+            onClick={() => {
+              if (!autoReload) {
+                return;
+              }
+              delete selectedCheckboxes[routeName];
+              updateSelectedCheckboxes();
+            }}
+            label="Delete"
+          >
+            <Trash />
+          </IconButton>
+        </Accordion.Actions>
+      </Accordion.Header>
+      <Accordion.Content>
         <Box padding={3} style={{ maxHeight: '100%' }}>
-          <Select
+          <Select.Root
             label="select content type used"
             value={selectedCheckboxes[routeName]['content-type']}
             onChange={(value) => {
@@ -134,29 +126,31 @@ const RouteAccordion = ({
               updateSelectedCheckboxes();
             }}
           >
-            {contentTypeNames.map((object, i) => {
-              if (!autoReload && selectedCheckboxes[routeName]['content-type'] !== object) {
-                return;
-              }
-              return (
-                <Option value={object} key={i}>
-                  {object}
-                </Option>
-              );
-            })}
-          </Select>
+            <Select.Content>
+              {contentTypeNames.map((object, i) => {
+                if (!autoReload && selectedCheckboxes[routeName]['content-type'] !== object) {
+                  return;
+                }
+                return (
+                  <Select.Item value={object} key={i}>
+                    {object}
+                  </Select.Item>
+                );
+              })}
+            </Select.Content>
+          </Select.Root>
           <br />
           <Typography variant="sigma">Enable roles from user and permissions</Typography>
-          <BaseCheckbox
+          <Checkbox
             name="Enable roles form user and permissions"
-            onValueChange={() => changeRolesEnabled()}
-            value={rolesEnabled}
+            onCheckedChange={() => changeRolesEnabled()}
+            checked={rolesEnabled}
             disabled={!autoReload}
           />
           <br />
           {rolesEnabled ? (
             <>
-              <AccordionGroup label="Roles">
+              <Accordion.Root label="Roles">
                 {isVisible && (
                   <ModalLayout
                     onClose={() => handleSetIsVisible((prev) => !prev)}
@@ -227,7 +221,7 @@ const RouteAccordion = ({
                     />
                   );
                 })}
-              </AccordionGroup>
+              </Accordion.Root>
             </>
           ) : (
             <Box background="neutral0" shadow="filterShadow" hasRadius>
@@ -244,8 +238,8 @@ const RouteAccordion = ({
             </Box>
           )}
         </Box>
-      </AccordionContent>
-    </Accordion>
+      </Accordion.Content>
+    </Accordion.Item>
   );
 };
 

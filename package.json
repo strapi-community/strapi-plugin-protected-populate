@@ -12,7 +12,11 @@
     "develop": "yarn workspace playground develop",
     "build": "yarn workspace playground build",
     "console": "yarn workspace playground strapi console",
-    "strapi": "yarn workspace playground strapi"
+    "strapi": "yarn workspace playground strapi",
+    "plugin-build": "yarn workspace strapi-plugin-protected-populate strapi-plugin build",
+    "verify": "yarn workspace strapi-plugin-protected-populate strapi-plugin verify",
+    "watch": "yarn workspace strapi-plugin-protected-populate strapi-plugin watch",
+    "watch:link": "yarn workspace strapi-plugin-protected-populate strapi-plugin watch:link"
   },
   "author": "Strapi Community Org",
   "license": "MIT",

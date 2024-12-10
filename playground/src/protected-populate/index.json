@@ -1,0 +1,45 @@
+{
+   "GET /api/about": {
+      "content-type": "plugin::upload.file",
+      "roles": {
+         "authenticated": {
+            "fields": [
+               "alternativeText",
+               "caption",
+               "width",
+               "height",
+               "name",
+               "name",
+               "alternativeText",
+               "caption",
+               "width",
+               "height"
+            ],
+            "populate": {
+               "folder": {
+                  "populate": {
+                     "parent": {
+                        "fields": [
+                           "name"
+                        ],
+                        "populate": {
+                           "parent": {
+                              "populate": {
+                                 "children": {}
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         },
+         "public": {
+            "fields": [
+               "width",
+               "height"
+            ]
+         }
+      }
+   }
+}

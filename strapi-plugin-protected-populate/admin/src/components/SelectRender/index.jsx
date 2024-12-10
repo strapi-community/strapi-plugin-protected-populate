@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Box } from '@strapi/design-system/Box';
-import { Typography } from '@strapi/design-system/Typography';
 import ComponentList from '../ComponentList';
 import ListRow from '../ListRow';
 import DynamicZoneList from '../DynamicZoneList';

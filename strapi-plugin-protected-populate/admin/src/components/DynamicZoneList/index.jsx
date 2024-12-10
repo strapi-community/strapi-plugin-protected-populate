@@ -10,7 +10,7 @@ import List from '../List';
 import Tr from '../Tr';
 import SelectRender from './SelectRender';
 import BoxWrapper from './BoxWrapper';
-import { Box } from '@strapi/design-system/Box';
+import { Box } from '@strapi/design-system';
 function DynamicZoneList({
   item,
   targetUid,

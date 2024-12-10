@@ -10,13 +10,13 @@ module.exports = ({ strapi }) => ({
     );
   },
   getContentTypes() {
-    const contentTypes = strapi.container.get('content-types').keys();
+    const contentTypes = strapi.get('content-types').keys();
     return contentTypes.filter(
       (contentType) => contentType.startsWith('api::') || contentType.startsWith('plugin::')
     );
   },
   indexData() {
-    return strapi.plugin('protected-populate').protectedRoutes;
+    return strapi.plugin('protected-populate').protectedRoutes
   },
   updateData(body) {
     strapi.plugin('protected-populate').protectedRoutes = body;
