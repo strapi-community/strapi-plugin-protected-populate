@@ -1,41 +1,24 @@
 {
-  "name": "strapi-plugin-protected-populate",
-  "version": "1.3.6",
-  "description": "Protects your populates from the url against bad actors.",
-  "strapi": {
-    "name": "protected-populate",
-    "description": "Protects your populates from the url against bad actors if configured correctly.",
-    "kind": "plugin",
-    "displayName": "Protected Populate"
-  },
-  "dependencies": {
-    "@strapi/design-system": "^1.4.1"
-  },
-  "peerDependencies": {
-    "@strapi/strapi": "^4.5.3"
-  },
-  "author": {
-    "name": "Boegie19"
-  },
-  "maintainers": [
-    {
-      "name": "Boegie19"
-    }
+  "name": "@strapi-plugin-protected-populate/monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Speed-up HTTP requests with LRU cache",
+  "workspaces": [
+    "./strapi-plugin-protected-populate",
+    "./playground"
   ],
   "scripts": {
-    "test": "jest /",
-    "prettier:code": "prettier \"**/*.js\"",
-    "prettier:other": "prettier \"**/*.{md,css,scss,yaml,yml}\"",
-    "prettier:code:write": "prettier --write \"**/*.js\"",
-    "prettier:other:write": "prettier --write \"**/*.{md,css,scss,yaml,yml}\""
+    "dev": "yarn workspace playground develop",
+    "develop": "yarn workspace playground develop",
+    "build": "yarn workspace playground build",
+    "console": "yarn workspace playground strapi console",
+    "strapi": "yarn workspace playground strapi",
+    "plugin-build": "yarn workspace strapi-plugin-protected-populate strapi-plugin build",
+    "verify": "yarn workspace strapi-plugin-protected-populate strapi-plugin verify",
+    "watch": "yarn workspace strapi-plugin-protected-populate strapi-plugin watch",
+    "watch:link": "yarn workspace strapi-plugin-protected-populate strapi-plugin watch:link"
   },
-  "engines": {
-    "node": ">=14.19.1",
-    "npm": ">=6.0.0"
-  },
+  "author": "Strapi Community Org",
   "license": "MIT",
-  "devDependencies": {
-    "jest": "^29.3.1",
-    "prettier": "2.8.1"
-  }
+  "dependencies": {}
 }

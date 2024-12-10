@@ -1,0 +1,66 @@
+{
+  "name": "strapi-plugin-protected-populate",
+  "version": "2.0.0-beta.1",
+  "description": "Protects your populates from the url against bad actors.",
+  "strapi": {
+    "name": "protected-populate",
+    "description": "Protects your populates from the url against bad actors if configured correctly.",
+    "kind": "plugin",
+    "displayName": "Protected Populate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/strapi-community/strapi-plugin-protected-populate.git"
+  },
+  "license": "MIT",
+  "author": "Boegie19 <34578426+Boegie19@users.noreply.github.com>",
+  "type": "commonjs",
+  "exports": {
+    "./package.json": "./package.json",
+    "./strapi-admin": {
+      "source": "./admin/src/index.js",
+      "import": "./dist/admin/index.mjs",
+      "require": "./dist/admin/index.js",
+      "default": "./dist/admin/index.js"
+    },
+    "./strapi-server": {
+      "source": "./server/src/index.js",
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.js",
+      "default": "./dist/server/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "strapi-plugin build",
+    "verify": "strapi-plugin verify",
+    "watch": "strapi-plugin watch",
+    "watch:link": "strapi-plugin watch:link"
+  },
+  "dependencies": {
+    "@strapi/design-system": "^2.0.0-rc.11",
+    "@strapi/icons": "^2.0.0-rc.11",
+    "react-intl": "^6.7.1"
+  },
+  "devDependencies": {
+    "@strapi/sdk-plugin": "^5.2.6",
+    "@strapi/strapi": "^5.0.3",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "styled-components": "^6.1.13"
+  },
+  "peerDependencies": {
+    "@strapi/sdk-plugin": "^5.2.6",
+    "@strapi/strapi": "^5.0.3",
+    "@strapi/icons": "^5.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "styled-components": "^6.1.13",
+    "react-query": "^3.39.3"
+  }
+}

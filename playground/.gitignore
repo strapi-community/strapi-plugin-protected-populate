@@ -82,7 +82,8 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
-.vscode
+.tsbuildinfo
+.eslintcache
 
 ############################
 # Node.js
@@ -95,13 +96,25 @@ logs
 results
 node_modules
 .node_history
-package-lock.json
+
+############################
+# Package managers
+############################
+
+.yarn/*
+!.yarn/cache
+!.yarn/unplugged
+!.yarn/patches
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+yarn-error.log
 
 ############################
 # Tests
 ############################
 
-testApp
 coverage
 
 ############################
@@ -111,13 +124,10 @@ coverage
 .env
 license.txt
 exports
-*.cache
+.strapi
 dist
 build
 .strapi-updater.json
-/types/*
+.strapi-cloud.json
 
-############################
-# Custom
-############################
-yarn.lock
+types/*
