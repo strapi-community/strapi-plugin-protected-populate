@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { Box, Accordion, Flex, IconButton } from '@strapi/design-system';
+import { Box, Accordion, Modal, IconButton } from '@strapi/design-system';
 import { Duplicate } from '@strapi/icons';
 import List from '../List';
 const RoleAccordion = ({
@@ -29,9 +28,11 @@ const RoleAccordion = ({
       <Accordion.Header>
         <Accordion.Trigger description="Your personal information">{role.name}</Accordion.Trigger>
         <Accordion.Actions>
+          <Modal.Trigger>
           <IconButton onClick={() => handleSetIsVisible(true, role.type)} label="Clone">
             <Duplicate />
           </IconButton>
+          </Modal.Trigger>
         </Accordion.Actions>
       </Accordion.Header>
       <Accordion.Content>

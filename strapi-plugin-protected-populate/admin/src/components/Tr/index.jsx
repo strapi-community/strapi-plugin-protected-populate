@@ -18,7 +18,7 @@ const Tr = styled.tr`
 
       &::before {
         content: '';
-        width: ${4 / 16};
+        width: 0.5rem;
         height: calc(100%);
         position: absolute;
         top: -7px;

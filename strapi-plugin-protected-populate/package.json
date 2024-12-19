@@ -46,7 +46,6 @@
   },
   "devDependencies": {
     "@strapi/sdk-plugin": "^5.2.6",
-    "@strapi/strapi": "^5.0.3",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -54,9 +53,7 @@
     "styled-components": "^6.1.13"
   },
   "peerDependencies": {
-    "@strapi/sdk-plugin": "^5.2.6",
-    "@strapi/strapi": "^5.0.3",
-    "@strapi/icons": "^5.0.3",
+    "@strapi/strapi": "^5.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
