@@ -43,7 +43,7 @@ function ListRow({
         {isMain !== true && <Curve color={isFromDynamicZone ? 'primary200' : 'neutral150'} />}
         <Flex paddingLeft={2} spacing={4} horizontal>
           <AttributeIcon type={src} customField={customField} />
-          <Typography fontWeight="bold">{name}</Typography>
+          <Typography marginLeft={'5px'} fontWeight="bold">{name}</Typography>
         </Flex>
       </td>
       <td>

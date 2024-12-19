@@ -33,6 +33,9 @@ function List({
     items.schema.attributes.id = {
       type: 'id',
     };
+    items.schema.attributes.documentId = {
+      type: 'id',
+    };
   }
   if (items.schema.populateCreatorFields) {
     (items.schema.attributes.createdBy = {

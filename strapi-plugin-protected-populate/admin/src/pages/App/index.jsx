@@ -5,12 +5,9 @@
  *
  */
 
-import React from 'react';
-import {Route, Routes} from 'react-router-dom';
-import pluginId from '../../pluginId';
+import * as React from 'react';
 import pluginPermissions from '../../permissions';
 import HomePage from '../HomePage';
-import { EmptyStateLayout } from '@strapi/design-system';
 import { Page } from '@strapi/strapi/admin';
 const App = () => {
   return (

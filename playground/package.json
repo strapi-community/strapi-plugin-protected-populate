@@ -12,9 +12,9 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@strapi/plugin-users-permissions": "5.5.0",
+    "@strapi/plugin-users-permissions": "5.6.0",
     "strapi-plugin-protected-populate": "2.0.0",
-    "@strapi/strapi": "5.5.0",
+    "@strapi/strapi": "5.6.0",
     "better-sqlite3": "9.4.3",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",

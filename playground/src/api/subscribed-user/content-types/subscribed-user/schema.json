@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscribed_users",
+  "info": {
+  "singularName": "subscribed-user",
+  "pluralName": "subscribed-users",
+  "displayName": "Subscribed Users",
+  "description": ""
+  },
+  "options": {
+  "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+  "user": {
+  "type": "relation",
+  "relation": "oneToOne",
+  "target": "plugin::users-permissions.user"
+  },
+  "events": {
+  "type": "enumeration",
+  "enum": [
+  "Blog",
+  "Course"
+  ]
+  },
+  "is_active": {
+  "type": "boolean",
+  "default": true,
+  "required": true
+  }
+  }
+  }

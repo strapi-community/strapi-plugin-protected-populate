@@ -1,43 +1,41 @@
 {
-   "GET /api/about": {
-      "content-type": "plugin::upload.file",
+   "GET /api/articles": {
+      "content-type": "api::article.article",
       "roles": {
          "authenticated": {
-            "fields": [
-               "alternativeText",
-               "caption",
-               "width",
-               "height",
-               "name",
-               "name",
-               "alternativeText",
-               "caption",
-               "width",
-               "height"
-            ],
             "populate": {
-               "folder": {
+               "author": {
+                  "fields": [
+                     "name",
+                     "email",
+                     "createdAt",
+                     "updatedAt",
+                     "id"
+                  ],
                   "populate": {
-                     "parent": {
-                        "fields": [
-                           "name"
-                        ],
+                     "articles": {
                         "populate": {
-                           "parent": {
-                              "populate": {
-                                 "children": {}
-                              }
-                           }
+                           "category": {}
                         }
                      }
                   }
                }
-            }
+            },
+            "fields": [
+               "title",
+               "description",
+               "slug",
+               "documentId",
+               "publishedAt",
+               "id",
+               "updatedAt",
+               "createdAt"
+            ]
          },
          "public": {
+            "populate": {},
             "fields": [
-               "width",
-               "height"
+               "title"
             ]
          }
       }

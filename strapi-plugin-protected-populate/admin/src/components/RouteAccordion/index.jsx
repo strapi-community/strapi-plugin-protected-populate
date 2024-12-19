@@ -10,7 +10,8 @@ import { Select } from '@strapi/ui-primitives';
 import {
   Box,
   Accordion,
-  Flex,
+  MultiSelect,
+  MultiSelectOption,
   IconButton,
   Checkbox,
   Typography,
@@ -71,7 +72,7 @@ const RouteAccordion = ({
   const rolesEnabled = typeof selectedCheckboxes[routeName]['roles'] !== 'undefined';
 
   const changeRolesEnabled = () => {
-    console.log("Test123")
+    console.log('Test123');
     if (rolesEnabled) {
       selectedCheckboxes[routeName]['populate'] =
         selectedCheckboxes[routeName]['roles']['public']['populate'];
@@ -149,20 +150,15 @@ const RouteAccordion = ({
           />
           <br />
           {rolesEnabled ? (
-            <>
+            <Modal.Root >
               <Accordion.Root label="Roles">
-                {isVisible && (
-                  <ModalLayout
-                    onClose={() => handleSetIsVisible((prev) => !prev)}
-                    labelledBy="title"
-                  >
-                    <ModalHeader>
-                      <Typography fontWeight="bold" textColor="neutral800" as="h2" id="title">
-                        Clone Menu
-                      </Typography>
-                    </ModalHeader>
-                    <ModalBody>
-                      <Select
+                  <Modal.Content>
+                    <Modal.Header>
+                      <Modal.Title>Clone Menu</Modal.Title>
+                    </Modal.Header>
+                    
+                    <Modal.Body>
+                      <MultiSelect
                         label="select roles to clone to"
                         value={modelRolesCloneTo}
                         onChange={(value) => {
@@ -171,37 +167,30 @@ const RouteAccordion = ({
                         multi
                         withTags
                       >
-                        {autoReload && roles.map(function (role) {
-                          if (role.type !== modelRoleCloneFrom) {
-                            return (
-                              <Option value={role.type} key={role.type}>
-                                {role.name}
-                              </Option>
-                            );
-                          }
-                        })}
-                      </Select>
-                    </ModalBody>
-                    <ModalFooter
-                      startActions={
-                        <Button
-                          onClick={() => handleSetIsVisible((prev) => !prev)}
-                          variant="tertiary"
-                        >
-                          Cancel
-                        </Button>
-                      }
-                      endActions={
-                        <Button
-                          disabled={modelRoleCloneFrom === '' || modelRolesCloneTo.length === 0}
-                          onClick={() => handleFinish()}
-                        >
-                          Finish
-                        </Button>
-                      }
-                    />
-                  </ModalLayout>
-                )}
+                        {autoReload &&
+                          roles.map(function (role) {
+                            if (role.type !== modelRoleCloneFrom) {
+                              return (
+                                <MultiSelectOption value={role.type} key={role.type}>
+                                  {role.name}
+                                </MultiSelectOption>
+                              );
+                            }
+                          })}
+                      </MultiSelect>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Modal.Close>
+                        <Button variant="tertiary">Cancel</Button>
+                      </Modal.Close>
+                      <Button
+                        disabled={modelRoleCloneFrom === '' || modelRolesCloneTo.length === 0}
+                        onClick={() => handleFinish()}
+                      >
+                        Finish
+                      </Button>
+                    </Modal.Footer>
+                    </Modal.Content>
                 {roles.map((role, i) => {
                   return (
                     <RoleAccordion
@@ -222,7 +211,7 @@ const RouteAccordion = ({
                   );
                 })}
               </Accordion.Root>
-            </>
+            </Modal.Root>
           ) : (
             <Box background="neutral0" shadow="filterShadow" hasRadius>
               <List

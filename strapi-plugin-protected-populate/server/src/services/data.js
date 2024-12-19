@@ -6,7 +6,7 @@ module.exports = ({ strapi }) => ({
   getRoutes() {
     const routes = strapi.server.router.stack;
     return routes.filter(
-      (route) => route.path.startsWith('/api/') && route.methods.at(-1) === 'GET'
+      (route) => route.path.startsWith('/api/')
     );
   },
   getContentTypes() {
