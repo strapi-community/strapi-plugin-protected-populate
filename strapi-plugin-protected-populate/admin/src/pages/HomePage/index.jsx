@@ -21,7 +21,7 @@ import {
 import { Plus, Check } from '@strapi/icons';
 import RouteAccordion from '../../components/RouteAccordion';
 import serverRestartWatcher from '../../utils/serverRestartWatcher';
-import { Layouts } from '@strapi/admin/strapi-admin';
+import { Layouts } from '@strapi/strapi/admin';
 import { useQuery } from 'react-query';
 
 export default function HomePage() {

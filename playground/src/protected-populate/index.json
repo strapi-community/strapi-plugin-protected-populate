@@ -39,5 +39,11 @@
             ]
          }
       }
+   },
+   "DELETE /api/about": {
+      "content-type": "api::temp.temp",
+      "fields": [
+         "color"
+      ]
    }
 }

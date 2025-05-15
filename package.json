@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "dev": "yarn workspace playground develop",
+    "start": "yarn workspace playground start",
     "develop": "yarn workspace playground develop",
     "build": "yarn workspace playground build",
     "console": "yarn workspace playground strapi console",
